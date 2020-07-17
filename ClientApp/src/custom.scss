@@ -1,4 +1,8 @@
-/* Provide sufficient contrast against white background */
+html,
+body {
+  height: 100vh;
+  margin: 0;
+}
 a {
   color: #0366d6;
 }
@@ -7,8 +11,469 @@ code {
   color: #e01a76;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+// wrapper for the login page
+.logInWrapper {
+  background: url('https://southerndiscourse.com/wp-content/uploads/2015/10/DSC07495.jpg')
+    no-repeat center center fixed;
+}
+
+// general wrapper to make background images full screen
+.wrapper {
+  min-height: 100vh;
+  background-size: cover;
+}
+
+// Start of Nav bar Styling
+nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.05);
+  position: sticky !important;
+  z-index: 1;
+  top: 0;
+  min-width: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  opacity: 0.8;
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24292e;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  position: relative;
+  align-items: center;
+}
+
+nav a:link,
+nav a:visited,
+html a:link,
+html a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:link.Home,
+a:visited.Home {
+  color: grey;
+}
+
+nav ul li img {
+  width: 50px;
+}
+
+li.navLeft {
+  font-size: 16px;
+  font-weight: 600;
+  color: #24292e;
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+
+li.navRight {
+  position: absolute;
+  font-size: 16px;
+  color: #24292e;
+  right: 0%;
+}
+
+li.navRight.Create {
+  right: 150px;
+  margin-right: 1rem;
+}
+
+li.navRight.Search {
+  right: 100px;
+}
+
+li.navRight.Login {
+  right: 50px;
+}
+
+// start of the Login screen styling
+
+div.Login-Container {
+  border: 3px outset grey;
+  width: 350px;
+  height: 250px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.2rem;
+}
+
+.login {
+  list-style: none;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.loginTwo {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  opacity: 0.8;
+}
+
+.loginField {
+  width: 90%;
+  margin-bottom: 5px;
+  border-radius: 0.2rem;
+  box-shadow: grey;
+  opacity: 0.9;
+}
+
+.buttonLogIn {
+  width: 90%;
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 0.2rem;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(26, 78, 26),
+    rgb(34, 156, 238)
+  );
+  color: white;
+  opacity: 0.9;
+}
+
+.createAccount {
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  background-image: url('https://media.freestocktextures.com/cache/d2/ae/d2ae1b05ca1cee01372362830c0b0ff6.jpg');
+  background-size: cover;
+  color: white;
+}
+
+.resetAccount {
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  background-image: url('https://media.freestocktextures.com/cache/d2/ae/d2ae1b05ca1cee01372362830c0b0ff6.jpg');
+  background-size: cover;
+  color: white;
+}
+
+// start of the submit page
+
+[type='date'] {
+  background: #fff
+    url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)
+    97% 50% no-repeat;
+}
+[type='date']::-webkit-inner-spin-button {
+  display: none;
+}
+[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+.submitTop {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+// these look like generic labels they may need to change
+label {
+  display: block;
+}
+
+input,
+textarea,
+select {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 3px 5px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: 190px;
+}
+
+// start of the search page
+
+.wholeSearchContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  border: 1px solid blue;
+  border-radius: 0.3rem;
+}
+
+.leftSideSearch {
+  width: 225px;
+  height: 500px;
+  border-right: 1px solid blue;
+  list-style: none;
+  background-color: rgb(218, 250, 218);
+}
+
+.leftSideSearch ul li {
+  list-style: none;
+  margin-right: 2rem;
+}
+
+.leftSideSearch h3 {
+  text-align: center;
+  background-color: rgb(218, 250, 218);
+}
+.rightSideSearch {
+  width: 100%;
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.thumbnailParty {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.listPartyRight {
+  font-size: 0.8rem;
+}
+
+.listPartyCenter,
+.listPartyRight {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.pictureThumbnail {
+  border: 1px solid #ddd;
+  padding: 5px;
+  min-width: 100px;
+  max-width: 150px;
+}
+
+// start of the Party page
+
+.pictureBox {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.partyPicture {
+  width: 100%;
+  max-width: 700px;
+  max-height: 400px;
+  align-items: center;
+}
+
+.partyDetailsWhole {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.mapAndAttending img {
+  width: 100%;
+}
+
+.mapAndAttending {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 99%;
+}
+
+.attending {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  width: 50%;
+  margin-bottom: 0%;
+}
+
+.attending p {
+  text-align: center;
+}
+
+.attendingButton {
+  width: 33.33%;
+  height: fit-content;
+}
+
+.affirmation {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.partyDetails {
+  width: 99%;
+  margin-top: 1rem;
+  display: flex;
+}
+
+.description {
+  border: 1px solid black;
+  width: 50%;
+  margin-right: 1rem;
+}
+
+.menu {
+  border: 1px solid black;
+  width: 50%;
+  max-height: auto;
+}
+
+.minorDetails {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+// this is the start of comments styling
+
+h1 {
+  text-align: center;
+}
+
+.comments {
+  margin: 50px auto;
+}
+
+.comments h1 {
+  text-align: center;
+  font-weight: bold;
+  color: #ff9800;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.comments h1::after {
+  content: '';
+  background: #ff9800;
+  display: block;
+  height: 3px;
+  width: 170px;
+  margin: 20px auto 5px;
+}
+
+.comments .row {
+  margin-top: 30px;
+}
+
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.commentContainer textarea {
+  width: 50%;
+  height: 100px;
+  resize: none;
+}
+
+.col-md-4 {
+  margin: 40px auto;
+}
+
+.profile {
+  padding: 70px 10px 10px;
+  background-color: #efefef;
+}
+
+.profile img {
+  top: -60px;
+  position: absolute;
+  left: calc(50% - 60px);
+  border: 10px solid white;
+}
+
+.user {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile h3 {
+  font-size: 20px;
+  margin-top: 15px;
+  color: #ff9800;
+}
+
+span {
+  font-size: 12px;
+  color: #333;
+}
+
+blockquote {
+  font-size: 16px;
+  line-height: 30px;
+}
+
+blockquote::before {
+  content: '" ';
+  font-size: 50px;
+  position: relative;
+  color: #ff9800;
+  line-height: 20px;
+  bottom: -15px;
+  right: 5px;
+}
+
+blockquote::after {
+  content: ' "';
+  font-size: 50px;
+  position: relative;
+  color: #ff9800;
+  line-height: 10px;
+  bottom: -15px;
+  right: 5px;
+}
+
+.profile:hover {
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+@media all and (min-width: 768px) {
+  // this styles the search bar and results
+  .thumbnailParty {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .listPartyCenter,
+  .listPartyRight,
+  .listPartyLeft {
+    margin-top: 1rem;
+    margin-right: 1rem;
+  }
+
+  .comments {
+    overflow: auto;
+    height: 100vh;
+  }
+
+  .commentContainer {
+    position: sticky;
+    left: 0;
+  }
+  section div .row {
+    height: 200vh;
+    width: 120vw;
+  }
+
+  .comments .row {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: nowrap;
+
+    .col-md-4 {
+      flex: 0 0 auto;
+      margin: 40px auto;
+    }
+  }
 }

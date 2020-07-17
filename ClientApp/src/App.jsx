@@ -1,24 +1,36 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router'
-import { Layout } from './components/Layout'
-import { Home } from './pages/Home'
-import HelloWorld from './pages/_template/HelloWorld'
-import HeyWorld from './pages/_template/HeyWorld'
-import NotFound from './pages/NotFound'
-import './custom.scss'
-export default class App extends Component {
-  static displayName = App.name
+import { Link } from 'react-router-dom'
 
-  render() {
-    return (
-      <Layout>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/counter" component={HelloWorld} />
-          <Route exact path="/typescript" component={HeyWorld} />
-          <Route exact path="*" component={NotFound} />
-        </Switch>
-      </Layout>
-    )
-  }
+import './custom.scss'
+import { Nav } from './components/Nav'
+import { Login } from './pages/Login'
+import { Submit } from './pages/Submit'
+import { Search } from './pages/Search'
+import { Party } from './pages/Party'
+import { Comments } from './components/Comments'
+
+export function App() {
+  return (
+    <>
+      <Switch>
+        <Route exact path="/Login">
+          <Login />
+        </Route>
+        <Route path="/Search">
+          <Nav />
+          <Search />
+        </Route>
+        <Route path="/Party/:id">
+          <Nav />
+          <Party />
+          <Comments />
+        </Route>
+        <Route path="/Submit">
+          <Nav />
+          <Submit />
+        </Route>
+      </Switch>
+    </>
+  )
 }
