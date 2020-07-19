@@ -41,7 +41,10 @@ namespace Tailgate.Controllers
             else
             {
                 // this is now filtering the parties by their name 
-                return await _context.Parties.Where(party => party.Name.ToUpper().Contains(filter.ToUpper())).ToListAsync();
+                return await _context.Parties.
+                Where(party => party.Name.ToUpper().
+                Contains(filter.ToUpper())).
+                ToListAsync();
 
             }
         }
