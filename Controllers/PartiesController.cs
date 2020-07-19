@@ -31,11 +31,19 @@ namespace Tailgate.Controllers
         // Returns a list of all your Parties
         //
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Party>>> GetParties()
+        public async Task<ActionResult<IEnumerable<Party>>> GetParties(string filter)
         {
-            // Uses the database context in `_context` to request all of the Parties and
-            // return them as a JSON array.
-            return await _context.Parties.ToListAsync();
+            if (filter == null)
+            {
+                return await _context.Parties.ToListAsync();
+
+            }
+            else
+            {
+                // this is now filtering the parties by their name 
+                return await _context.Parties.Where(party => party.Name.ToUpper().Contains(filter.ToUpper())).ToListAsync();
+
+            }
         }
 
         // GET: api/Parties/5

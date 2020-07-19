@@ -31,14 +31,19 @@ function SinglePartyForList(props) {
 
 export function Search() {
   const [parties, setParties] = useState([])
+  const [filterText, setFilterText] = useState('')
 
   useEffect(() => {
-    fetch('/api/Parties')
+    const url =
+      filterText.length === 0
+        ? `/api/Parties`
+        : `/api/Parties?filter=${filterText}`
+    fetch(url)
       .then(response => response.json())
       .then(apiData => {
         setParties(apiData)
       })
-  }, [])
+  }, [filterText])
 
   return (
     <>
@@ -82,7 +87,13 @@ export function Search() {
         </div>
         <div class="list-group rightSideSearch">
           <li className="list-group-item">
-            <input type="text" placeholder="Search" className="form-control" />
+            <input
+              type="text"
+              placeholder="Search"
+              className="form-control"
+              value={filterText}
+              onChange={event => setFilterText(event.target.value)}
+            />
           </li>
           {parties.map(party => (
             <SinglePartyForList key={party.id} party={party} />
