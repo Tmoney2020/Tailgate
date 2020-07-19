@@ -1,0 +1,5 @@
+TRUNCATE TABLE "Parties";
+
+INSERT INTO "Parties" ("Name", "Description", "Date", "Menu", "Type", "Event", "EndTime", "StartTime") VALUES ('Trents Party', 'This is going to be the biggest party of the year. Bring your friends and family, food and Drinks for everyone!', '04/09/2020','Hot Dogs, Hamburgers, Beer, Wine, Mules', 'NFL', 'Bucs Vs Saints', '5:00 PM', '1:00PM');
+INSERT INTO "Parties" ("Name", "Description", "Date", "Menu", "Type", "Event", "EndTime", "StartTime") VALUES ('Kellys Party', 'Welcome to my amazing tailgate party. Everyone is going to be there so make sure you invite all of your friends', '09/23/2020', 'Pasta, wine, fried green tomoatoes, anything you can think of!', 'NBA', 'Magic Vs Lakers', '7:00 PM', '12:00 PM');
+INSERT INTO "Parties" ("Name", "Description", "Date", "Menu", "Type", "Event", "EndTime", "StartTime") VALUES ('Tuckers Party', 'This is going to be a dogtastic party. SO make sure all of the pups come. Dog friendly games!', '12/31/2021', 'Bones, Kibble, and all the treats you can eat, there will also be milk, water', 'MLB', 'Rays Vs Yankees', '11:00 AM', '4:30 PM');
