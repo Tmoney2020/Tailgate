@@ -36,7 +36,7 @@ export function Login() {
           </ul>
           <ul className="loginTwo">
             <li>
-              <Link to="#">
+              <Link to="/Profile">
                 <button className="createAccount" to="#">
                   Create an account
                 </button>

@@ -9,6 +9,7 @@ import { Submit } from './pages/Submit'
 import { Search } from './pages/Search'
 import { Party } from './pages/Party'
 import { Comments } from './components/Comments'
+import { Profile } from './pages/Profile'
 
 export function App() {
   return (
@@ -28,6 +29,10 @@ export function App() {
         <Route path="/Submit">
           <Nav />
           <Submit />
+        </Route>
+        <Route path="/Profile">
+          <Nav />
+          <Profile />
         </Route>
       </Switch>
     </>

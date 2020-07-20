@@ -96,8 +96,8 @@ export function Party() {
           </div>
         </div>
       </div>
-      <section className="comments">
-        <form onSubmit={handleNewCommentSubmit}>
+      <form onSubmit={handleNewCommentSubmit}>
+        <section className="comments">
           <div className="commentContainer">
             <h1>Post a Comment</h1>
             <p className="text-center">Leave here comment here.</p>
@@ -107,30 +107,30 @@ export function Party() {
               value={newComment.body}
               onChange={handleNewCommentFieldChange}
             />
-            <button class="btn btn-primary mt-2" type="submit">
+            <button className="btn btn-primary mt-2" type="submit">
               Submit
             </button>
           </div>
-        </form>
-        {party.comments.length > 0 && (
-          <div className="row">
-            {party.comments.map(comment => (
-              <div key={comment.id} className="col-md-4 text-center">
-                <div className="profile">
-                  <img
-                    src="https://www.vieravet.com/sites/default/files/styles/large/adaptive-image/public/golden-retriever-dog-breed-info.jpg?itok=LCRMRkum"
-                    className="user"
-                  />
-                  <blockquote>{comment.body}</blockquote>
-                  <h3>
-                    username <span>"{comment.flair}"</span>
-                  </h3>
+          {party.comments.length > 0 && (
+            <div className="row">
+              {party.comments.map(comment => (
+                <div key={comment.id} className="col-md-4 text-center">
+                  <div className="profile">
+                    <img
+                      src="https://www.vieravet.com/sites/default/files/styles/large/adaptive-image/public/golden-retriever-dog-breed-info.jpg?itok=LCRMRkum"
+                      className="user"
+                    />
+                    <blockquote>{comment.body}</blockquote>
+                    <h3>
+                      username <span>"{comment.flair}"</span>
+                    </h3>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
+              ))}
+            </div>
+          )}
+        </section>
+      </form>
     </>
   )
 }

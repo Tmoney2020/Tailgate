@@ -466,6 +466,11 @@ blockquote::after {
     width: 120vw;
   }
 
+  .profile {
+    min-height: 250px;
+    max-height: 250px;
+  }
+
   .comments .row {
     margin-top: 30px;
     display: flex;
