@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Tailgate.Models
@@ -23,5 +24,6 @@ namespace Tailgate.Models
         public string Menu { get; set; }
         public string Type { get; set; }
         public string Event { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

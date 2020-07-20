@@ -35,16 +35,21 @@ namespace Tailgate.Controllers
         {
             if (filter == null)
             {
-                return await _context.Parties.ToListAsync();
+                return await _context.Parties.
+                                OrderBy(party => party.Name).
+                                Include(party => party.Comments).
+                                ToListAsync();
 
             }
             else
             {
                 // this is now filtering the parties by their name 
                 return await _context.Parties.
-                Where(party => party.Name.ToUpper().
-                Contains(filter.ToUpper())).
-                ToListAsync();
+                                Where(party => party.Name.ToUpper().
+                                Contains(filter.ToUpper())).
+                                OrderBy(party => party.Name).
+                                Include(party => party.Comments).
+                                ToListAsync();
 
             }
         }
@@ -59,7 +64,11 @@ namespace Tailgate.Controllers
         public async Task<ActionResult<Party>> GetParty(int id)
         {
             // Find the party in the database using `FindAsync` to look it up by id
-            var party = await _context.Parties.FindAsync(id);
+            var party = await _context.Parties.
+                                Where(party => party.Id == id).
+                                Include(party => party.Comments).
+                                FirstOrDefaultAsync();
+
 
             // If we didn't find anything, we receive a `null` in return
             if (party == null)
