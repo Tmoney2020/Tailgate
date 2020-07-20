@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function SinglePartyForList(props) {
   return (
     <Link
-      to="/Party/:id"
+      to={`/Parties/${props.party.id}`}
       class="list-group-item list-group-item-action thumbnailParty"
     >
       <div className="listPartyLeft">
@@ -33,6 +33,11 @@ export function Search() {
   const [parties, setParties] = useState([])
   const [filterText, setFilterText] = useState('')
 
+  // this is trying to figure out the 2nd filter, remember there on the select is extra info right now
+  const [filterType, setFilterType] = useState('')
+
+  console.log(filterType)
+
   useEffect(() => {
     const url =
       filterText.length === 0
@@ -55,7 +60,12 @@ export function Search() {
               <label for="exampleFormControlSelect1">
                 Type of Sporting Event
               </label>
-              <select className="form-control" id="exampleFormControlSelect1">
+              <select
+                className="form-control"
+                id="exampleFormControlSelect1"
+                value={filterType}
+                onChange={event => setFilterType(event.target.value)}
+              >
                 <option>NFL</option>
                 <option>NBA</option>
                 <option>NCAA Football</option>

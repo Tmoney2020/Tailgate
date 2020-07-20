@@ -15,6 +15,8 @@ namespace Tailgate.Models
 
         public DbSet<Party> Parties { get; set; }
 
+        public DbSet<Comment> Comments { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

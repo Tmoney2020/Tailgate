@@ -21,7 +21,7 @@ export function App() {
           <Nav />
           <Search />
         </Route>
-        <Route path="/Party/:id">
+        <Route path="/Parties/:id">
           <Nav />
           <Party />
           <Comments />
