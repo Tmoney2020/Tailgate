@@ -24,7 +24,6 @@ export function App() {
         <Route path="/Parties/:id">
           <Nav />
           <Party />
-          <Comments />
         </Route>
         <Route path="/Submit">
           <Nav />

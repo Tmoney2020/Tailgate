@@ -14,6 +14,7 @@ export function Party() {
     menu: '',
     type: '',
     event: '',
+    comments: [],
   })
 
   useEffect(() => {
@@ -66,6 +67,31 @@ export function Party() {
           </div>
         </div>
       </div>
+      <section className="comments">
+        <div className="commentContainer">
+          <h1>Post a Comment</h1>
+          <p className="text-center">Leave here comment here.</p>
+          <textarea placeholder="Add Comment" />
+        </div>
+        {party.comments.length > 0 && (
+          <div className="row">
+            {party.comments.map(comment => (
+              <div key={comment.id} className="col-md-4 text-center">
+                <div className="profile">
+                  <img
+                    src="https://www.vieravet.com/sites/default/files/styles/large/adaptive-image/public/golden-retriever-dog-breed-info.jpg?itok=LCRMRkum"
+                    className="user"
+                  />
+                  <blockquote>{comment.body}</blockquote>
+                  <h3>
+                    username <span>"{comment.flair}"</span>
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
     </>
   )
 }
