@@ -3,7 +3,13 @@ import { useParams } from 'react-router'
 
 export function Party() {
   const params = useParams()
-  const id = params.id
+  const id = parseInt(params.id)
+
+  const [newComment, setNewComment] = useState({
+    body: '',
+    flair: '',
+    partyId: id,
+  })
 
   const [party, setParty] = useState({
     name: '',
@@ -17,14 +23,37 @@ export function Party() {
     comments: [],
   })
 
+  const fetchParty = () => {
+    fetch(`api/Parties/${id}`)
+      .then(response => response.json())
+      .then(apiData => setParty(apiData))
+  }
+
   useEffect(() => {
-    const fetchParty = () => {
-      fetch(`api/Parties/${id}`)
-        .then(response => response.json())
-        .then(apiData => setParty(apiData))
-    }
     fetchParty()
   }, [])
+
+  const handleNewCommentFieldChange = event => {
+    const whichFieldChanged = event.target.id
+    const value = event.target.value
+
+    setNewComment({ ...newComment, [whichFieldChanged]: value })
+  }
+
+  const handleNewCommentSubmit = event => {
+    event.preventDefault()
+
+    fetch(`api/Comments`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newComment),
+    })
+      .then(response => response.json)
+      .then(apiResponse => {
+        fetchParty()
+        setNewComment({ ...newComment, body: '', flair: '' })
+      })
+  }
 
   return (
     <>
@@ -68,11 +97,21 @@ export function Party() {
         </div>
       </div>
       <section className="comments">
-        <div className="commentContainer">
-          <h1>Post a Comment</h1>
-          <p className="text-center">Leave here comment here.</p>
-          <textarea placeholder="Add Comment" />
-        </div>
+        <form onSubmit={handleNewCommentSubmit}>
+          <div className="commentContainer">
+            <h1>Post a Comment</h1>
+            <p className="text-center">Leave here comment here.</p>
+            <textarea
+              placeholder="Add Comment"
+              id="body"
+              value={newComment.body}
+              onChange={handleNewCommentFieldChange}
+            />
+            <button class="btn btn-primary mt-2" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
         {party.comments.length > 0 && (
           <div className="row">
             {party.comments.map(comment => (
