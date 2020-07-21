@@ -56,14 +56,16 @@ export function Party() {
   }
 
   return (
-    <>
-      <h1>Welcome to {party.name}</h1>
-      <div className="pictureBox">
-        <img
-          src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
-          alt="partyPicture"
-          className="partyPicture"
-        />
+    <div className="wrapper wholePartyPage">
+      <div className="backgroundPictureTop">
+        <h1>Welcome to {party.name}</h1>
+        <div className="pictureBox">
+          <img
+            src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
+            alt="partyPicture"
+            className="partyPicture"
+          />
+        </div>
       </div>
       <div className="partyDetailsWhole">
         <div className="partyDetails">
@@ -131,6 +133,6 @@ export function Party() {
           )}
         </section>
       </form>
-    </>
+    </div>
   )
 }
