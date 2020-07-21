@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import { authHeader } from '../auth'
 
 export function Party() {
   const params = useParams()
@@ -45,7 +46,7 @@ export function Party() {
 
     fetch(`api/Comments`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(newComment),
     })
       .then(response => response.json)

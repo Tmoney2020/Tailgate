@@ -80,6 +80,7 @@ namespace Tailgate
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tailgate");
             });
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

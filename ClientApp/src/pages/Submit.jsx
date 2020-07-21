@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 
 import { Party } from './Party'
+import { authHeader } from '../auth'
 
 export function Submit() {
   const history = useHistory()
@@ -36,15 +37,22 @@ export function Submit() {
 
     fetch('/api/Parties', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(newParty),
     })
-      .then(response => response.json())
-      .then(apiData => {
-        console.log(apiData)
-        if (apiData.status === 400) {
-          const newMessage = Object.values(apiData.errors).join(' ')
-          setErrorMessage(newMessage)
+      .then(response => {
+        if (response.status === 401) {
+          return {
+            status: 401,
+            errors: { login: 'Not Authorized. Please create an account. ' },
+          }
+        } else {
+          return response.json()
+        }
+      })
+      .then(apiResponse => {
+        if (apiResponse.status != 201) {
+          setErrorMessage(Object.values(apiResponse.errors).join(' '))
         } else {
           history.push('/Search')
         }
