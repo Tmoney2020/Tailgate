@@ -29,6 +29,19 @@ namespace Tailgate.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            var alreadyHaveUserWithTheEmail = _context.Users.Any(existingUser => existingUser.Email.ToLower() == user.Email.ToLower());
+            if (alreadyHaveUserWithTheEmail)
+            {
+                // Make a custom error response
+                var response = new
+                {
+                    status = 400,
+                    errors = new List<string>() { "This account already exists!" }
+                };
+
+                // Return our error with the custom response
+                return BadRequest(response);
+            }
             // Indicate to the database context we want to add this new record
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
