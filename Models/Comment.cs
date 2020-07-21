@@ -9,5 +9,6 @@ namespace Tailgate.Models
         public DateTime CreatedAt { get; private set; } = DateTime.Now;
         public string Flair { get; set; }
         public int PartyId { get; set; }
+        public int UserId { get; set; }
     }
 }

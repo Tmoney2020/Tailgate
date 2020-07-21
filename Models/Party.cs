@@ -20,6 +20,7 @@ namespace Tailgate.Models
         [Required]
 
         public string EndTime { get; set; }
+        public int UserId { get; set; }
 
         public string Menu { get; set; }
         public string Type { get; set; }
