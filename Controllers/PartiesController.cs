@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Geocoding.Microsoft;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Tailgate.Models;
 
 namespace Tailgate.Controllers
@@ -17,10 +19,14 @@ namespace Tailgate.Controllers
     public class PartiesController : ControllerBase
     {
         private readonly DatabaseContext _context;
+        private readonly string BING_MAPS_KEY;
 
-        public PartiesController(DatabaseContext context)
+
+        public PartiesController(DatabaseContext context, IConfiguration config)
         {
             _context = context;
+            BING_MAPS_KEY = config["BING_MAPS_KEY"];
+
         }
 
         [HttpGet]
@@ -101,6 +107,23 @@ namespace Tailgate.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Party>> PostParty(Party party)
         {
+            // Create a new geocoder
+            var geocoder = new BingMapsGeocoder(BING_MAPS_KEY);
+
+            // Request this address to be geocoded.
+            var geocodedAddresses = await geocoder.GeocodeAsync(party.Address);
+
+            // ... and pick out the best address sorted by the confidence level
+            var bestGeocodedAddress = geocodedAddresses.OrderBy(address => address.Confidence).LastOrDefault();
+
+            // If we have a best geocoded address, use the latitude and longitude from that result
+            if (bestGeocodedAddress != null)
+            {
+                party.Latitude = bestGeocodedAddress.Coordinates.Latitude;
+                party.Longitude = bestGeocodedAddress.Coordinates.Longitude;
+            }
+
+
             party.UserId = GetCurrentUserId();
 
             _context.Parties.Add(party);

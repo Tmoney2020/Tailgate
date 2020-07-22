@@ -17,6 +17,7 @@ export function Submit() {
     menu: '',
     type: '',
     event: '',
+    address: '',
   })
 
   const handleInputFieldsForSubmit = event => {
@@ -50,11 +51,11 @@ export function Submit() {
           return response.json()
         }
       })
-      .then(apiResponse => {
-        if (apiResponse.status === 201) {
-          history.push('/Search')
+      .then(apiData => {
+        if (apiData.errors) {
+          setErrorMessage(Object.values(apiData.errors).join(' '))
         } else {
-          setErrorMessage(Object.values(apiResponse.errors).join(' '))
+          history.push('/Search')
         }
       })
   }
@@ -172,12 +173,14 @@ export function Submit() {
           />
         </div>
         <div className="form-group mr-3 ml-3">
-          <label for="exampleFormControlInput1">Location</label>
+          <label for="exampleFormControlInput1">Address</label>
           <input
             type="text"
             className="form-control"
-            id="location"
+            id="address"
             placeholder="123 Fake Street"
+            value={newParty.address}
+            onChange={handleInputFieldsForSubmit}
           />
         </div>
         <button class="btn btn-primary ml-3" type="submit">
