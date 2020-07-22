@@ -12,6 +12,7 @@ export function Search() {
     latitude: 27.77101804911986,
     longitude: -82.66090611749074,
     zoom: 8,
+    mapbox: '//styles/mapbox/streets-v11',
   })
 
   const [selectedMapParty, setSelectedMapParty] = useState(null)
