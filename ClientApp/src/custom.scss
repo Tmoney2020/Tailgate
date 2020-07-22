@@ -194,6 +194,9 @@ select {
 }
 
 // start of the search page
+.mapboxgl-popup {
+  z-index: 1;
+}
 
 .wholeSearchContainer {
   display: flex;

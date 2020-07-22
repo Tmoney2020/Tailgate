@@ -14,6 +14,8 @@ export function Search() {
     zoom: 8,
   })
 
+  const [selectedMapParty, setSelectedMapParty] = useState(null)
+
   // this is trying to figure out the 2nd filter, remember there on the select is extra info right now
   const [filterType, setFilterType] = useState('')
 
@@ -39,17 +41,43 @@ export function Search() {
           {...viewport}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         >
-          {parties.map(party => (
-            <Marker
-              key={party.id}
-              latitude={party.latitude}
-              longitude={party.longitude}
+          {selectedMapParty && (
+            <Popup
+              latitude={selectedMapParty.latitude}
+              longitude={selectedMapParty.longitude}
+              closeButton={true}
+              closeOnClick={false}
+              onClose={() => setSelectedMapParty(null)}
+              offsetTop={-5}
             >
-              <span role="img" aria-label="taco">
-                🚩
-              </span>
-            </Marker>
-          ))}
+              <div className="card my-3">
+                <div className="card-header">
+                  <Link to={`/Parties/${selectedMapParty.id}`}>
+                    {selectedMapParty.name}
+                  </Link>
+                </div>
+                <div className="card-body">{selectedMapParty.description}</div>
+              </div>
+            </Popup>
+          )}
+
+          {parties
+            .filter(party => party.latitude != 0.0 && party.longitude != 0.0)
+            .map(party => (
+              <Marker
+                key={party.id}
+                latitude={party.latitude}
+                longitude={party.longitude}
+              >
+                <span
+                  role="img"
+                  aria-label="flag"
+                  onClick={() => setSelectedMapParty(party)}
+                >
+                  🚩
+                </span>
+              </Marker>
+            ))}
         </ReactMapGL>
       </div>
       <div className="wholeSearchContainer">
