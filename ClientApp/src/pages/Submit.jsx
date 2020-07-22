@@ -51,10 +51,10 @@ export function Submit() {
         }
       })
       .then(apiResponse => {
-        if (apiResponse.status != 201) {
-          setErrorMessage(Object.values(apiResponse.errors).join(' '))
-        } else {
+        if (apiResponse.status === 201) {
           history.push('/Search')
+        } else {
+          setErrorMessage(Object.values(apiResponse.errors).join(' '))
         }
       })
   }
@@ -108,6 +108,7 @@ export function Submit() {
         <div className="form-group mr-3 ml-3">
           <label for="exampleFormControlInput1">Tailgate party name</label>
           <input
+            maxLength="20"
             type="text"
             className="form-control"
             id="name"

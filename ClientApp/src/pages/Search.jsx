@@ -54,14 +54,18 @@ export function Search() {
     <>
       <div className="wholeSearchContainer">
         <div className="leftSideSearch">
-          <h3>Filter Search</h3>
+          <h3>Find Your Tailgate</h3>
           <div className="p-4">
+            <div className="form-group">
+              <label for="dateOfEvent">Date Of Event</label>
+              <input type="date" name="dateOfEvent" id="dateOfEvent" />
+            </div>
             <div className="form-group">
               <label for="exampleFormControlSelect1">
                 Type of Sporting Event
               </label>
               <select
-                className="form-control"
+                className="form-control smallSearch"
                 id="exampleFormControlSelect1"
                 value={filterType}
                 onChange={event => setFilterType(event.target.value)}
@@ -78,14 +82,10 @@ export function Search() {
               </select>
             </div>
             <div className="form-group">
-              <label for="dateOfEvent">Date Of Event</label>
-              <input type="date" name="dateOfEvent" id="dateOfEvent" />
-            </div>
-            <div className="form-group">
               <label for="exampleFormControlInput1">Location</label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control smallSearch"
                 id="location"
                 placeholder="123 Fake Street"
               />
@@ -99,7 +99,7 @@ export function Search() {
           <li className="list-group-item">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search By Tailgate Name"
               className="form-control"
               value={filterText}
               onChange={event => setFilterText(event.target.value)}
