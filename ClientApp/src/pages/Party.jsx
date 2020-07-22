@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { authHeader } from '../auth'
+import ReactMapGL, { Popup, Marker } from 'react-map-gl'
+import { Link } from 'react-router-dom'
 
 export function Party() {
   const params = useParams()
   const id = parseInt(params.id)
+
+  const [selectedMapParty, setSelectedMapParty] = useState(null)
+
+  const [viewport, setViewport] = useState({
+    width: 500,
+    height: 500,
+    latitude: 27.77101804911986,
+    longitude: -82.66090611749074,
+    zoom: 8,
+  })
 
   const [newComment, setNewComment] = useState({
     body: '',
@@ -21,6 +33,9 @@ export function Party() {
     menu: '',
     type: '',
     event: '',
+    longitude: 0,
+    latitude: 0,
+    address: '',
     comments: [],
   })
 
@@ -78,11 +93,42 @@ export function Party() {
           <p>Start Time: {party.startTime}</p>
           <p>End Time: {party.endTime}</p>
         </div>
-        <div className="mapAndAttending">
-          <img
-            src="https://s3.amazonaws.com/petcentral.com/wp-content/uploads/2016/09/26151523/Golden-Retriever-Dog-Breed.jpg"
-            alt="map of party"
-          />
+        <div className="map d-flex-column justify-content-center">
+          <div className="mapAndAttending ">
+            <ReactMapGL
+              onViewportChange={setViewport}
+              {...viewport}
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            >
+              {selectedMapParty && (
+                <Popup
+                  latitude={party.latitude}
+                  longitude={party.longitude}
+                  closeButton={true}
+                  closeOnClick={false}
+                  onClose={() => setSelectedMapParty(null)}
+                  offsetTop={-5}
+                >
+                  <div className="card my-3">
+                    <div className="card-header">{party.address}</div>
+                    <div className="card-body">
+                      I want this to be directions
+                    </div>
+                  </div>
+                </Popup>
+              )}
+
+              <Marker latitude={party.latitude} longitude={party.longitude}>
+                <span
+                  role="img"
+                  aria-label="flag"
+                  onClick={() => setSelectedMapParty(party)}
+                >
+                  🚩
+                </span>
+              </Marker>
+            </ReactMapGL>
+          </div>
           <div className="attending">
             <p># of Attending</p>
             <div className="affirmation">
