@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import ReactMapGL, { Popup, Marker } from 'react-map-gl'
 import { Link } from 'react-router-dom'
-
-function SinglePartyForList(props) {
-  return (
-    <Link
-      to={`/Parties/${props.party.id}`}
-      class="list-group-item list-group-item-action thumbnailParty"
-    >
-      <div className="listPartyLeft">
-        <p>{props.party.name}</p>
-        <img
-          src="https://vetstreet.brightspotcdn.com/dims4/default/21dc2d6/2147483647/thumbnail/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F9f%2F9b%2F6ff000df4e4d8e8c70608cf6e0f5%2Fgolden-retriever-ap-0johoo-645.jpg"
-          id="partyPhoto"
-          className="pictureThumbnail"
-        />
-      </div>
-      <div className="listPartyCenter">
-        <p>{props.party.description}</p>
-      </div>
-      <div className="listPartyRight">
-        <p>{props.party.type}</p>
-        <p>{props.party.date}</p>
-        <p>
-          {props.party.startTime}-{props.party.endTime}
-        </p>
-      </div>
-    </Link>
-  )
-}
 
 export function Search() {
   const [parties, setParties] = useState([])
   const [filterText, setFilterText] = useState('')
+
+  const [viewport, setViewport] = useState({
+    width: 500,
+    height: 500,
+    latitude: 27.77101804911986,
+    longitude: -82.66090611749074,
+    zoom: 8,
+  })
 
   // this is trying to figure out the 2nd filter, remember there on the select is extra info right now
   const [filterType, setFilterType] = useState('')
@@ -52,6 +33,25 @@ export function Search() {
 
   return (
     <>
+      <div className="my-3 d-flex justify-content-center">
+        <ReactMapGL
+          onViewportChange={setViewport}
+          {...viewport}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        >
+          {parties.map(party => (
+            <Marker
+              key={party.id}
+              latitude={party.latitude}
+              longitude={party.longitude}
+            >
+              <span role="img" aria-label="taco">
+                🚩
+              </span>
+            </Marker>
+          ))}
+        </ReactMapGL>
+      </div>
       <div className="wholeSearchContainer">
         <div className="leftSideSearch">
           <h3>Find Your Tailgate</h3>
@@ -114,5 +114,33 @@ export function Search() {
         <h1 class="display-4">This is where the map is going to go</h1>
       </div>
     </>
+  )
+}
+
+function SinglePartyForList(props) {
+  return (
+    <Link
+      to={`/Parties/${props.party.id}`}
+      class="list-group-item list-group-item-action thumbnailParty"
+    >
+      <div className="listPartyLeft">
+        <p>{props.party.name}</p>
+        <img
+          src="https://vetstreet.brightspotcdn.com/dims4/default/21dc2d6/2147483647/thumbnail/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F9f%2F9b%2F6ff000df4e4d8e8c70608cf6e0f5%2Fgolden-retriever-ap-0johoo-645.jpg"
+          id="partyPhoto"
+          className="pictureThumbnail"
+        />
+      </div>
+      <div className="listPartyCenter">
+        <p>{props.party.description}</p>
+      </div>
+      <div className="listPartyRight">
+        <p>{props.party.type}</p>
+        <p>{props.party.date}</p>
+        <p>
+          {props.party.startTime}-{props.party.endTime}
+        </p>
+      </div>
+    </Link>
   )
 }
