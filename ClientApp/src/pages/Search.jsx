@@ -12,7 +12,13 @@ export function Search() {
     latitude: 27.77101804911986,
     longitude: -82.66090611749074,
     zoom: 8,
-    mapbox: '//styles/mapbox/streets-v11',
+    style_id: '',
+    sources: {
+      composite: {
+        url: 'mapbox://mapbox.mapbox-streets-v8,examples.0fr72zt8',
+        type: 'vector',
+      },
+    },
   })
 
   const [selectedMapParty, setSelectedMapParty] = useState(null)
@@ -38,6 +44,7 @@ export function Search() {
     <>
       <div className="my-3 d-flex justify-content-center">
         <ReactMapGL
+          mapStyle="mapbox://styles/mapbox/streets-v11"
           onViewportChange={setViewport}
           {...viewport}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

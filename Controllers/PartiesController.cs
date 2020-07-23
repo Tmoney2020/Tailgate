@@ -134,12 +134,18 @@ namespace Tailgate.Controllers
 
 
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteParty(int id)
         {
             var party = await _context.Parties.FindAsync(id);
             if (party == null)
             {
                 return NotFound();
+            }
+            if (party.UserId != GetCurrentUserId())
+            {
+                return NotFound();
+
             }
 
             _context.Parties.Remove(party);

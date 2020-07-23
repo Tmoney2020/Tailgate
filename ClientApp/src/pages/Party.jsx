@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import { authHeader } from '../auth'
+import { useParams, useHistory } from 'react-router'
+import { authHeader, getUserId } from '../auth'
 import ReactMapGL, { Popup, Marker } from 'react-map-gl'
 import { Link } from 'react-router-dom'
 
 export function Party() {
   const params = useParams()
   const id = parseInt(params.id)
+  const history = useHistory()
 
   const [selectedMapParty, setSelectedMapParty] = useState(null)
+
+  const currentUserId = getUserId()
 
   const [viewport, setViewport] = useState({
     width: 500,
@@ -69,6 +72,18 @@ export function Party() {
         fetchParty()
         setNewComment({ ...newComment, body: '', flair: '' })
       })
+  }
+
+  const handleDelete = event => {
+    event.preventDefault()
+    fetch(`api/Parties/${id}`, {
+      method: 'DELETE',
+      headers: { ...authHeader() },
+    }).then(response => {
+      if (response.status === 204) {
+        history.push('/Search')
+      }
+    })
   }
 
   return (
@@ -159,6 +174,19 @@ export function Party() {
             <button className="btn btn-primary mt-2" type="submit">
               Submit
             </button>
+            {currentUserId === party.userId && (
+              <>
+                <button className="btn btn-danger mt-2" onClick={handleDelete}>
+                  Delete Party
+                </button>
+                <Link
+                  to={`/Parties/${id}/edit`}
+                  className="btn btn-primary btn-sm mt-1"
+                >
+                  Edit Party
+                </Link>
+              </>
+            )}
           </div>
           {party.comments.length > 0 && (
             <div className="row">
