@@ -161,11 +161,19 @@ function SinglePartyForList(props) {
     >
       <div className="listPartyLeft">
         <p>{props.party.name}</p>
-        <img
-          src="https://vetstreet.brightspotcdn.com/dims4/default/21dc2d6/2147483647/thumbnail/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F9f%2F9b%2F6ff000df4e4d8e8c70608cf6e0f5%2Fgolden-retriever-ap-0johoo-645.jpg"
-          id="partyPhoto"
-          className="pictureThumbnail"
-        />
+        {props.party.photoURL ? (
+          <img
+            alt="partyPhoto"
+            className="pictureThumbnail"
+            src={props.party.photoURL}
+          />
+        ) : (
+          <img
+            src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
+            alt="partyPhoto"
+            className="pictureThumbnail"
+          />
+        )}
       </div>
       <div className="listPartyCenter">
         <p>{props.party.description}</p>
