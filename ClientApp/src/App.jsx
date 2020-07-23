@@ -10,6 +10,7 @@ import { Search } from './pages/Search'
 import { Party } from './pages/Party'
 import { Comments } from './components/Comments'
 import { Profile } from './pages/Profile'
+import { EditParty } from './pages/editParty'
 
 export function App() {
   return (
@@ -25,9 +26,13 @@ export function App() {
           <Nav />
           <Search />
         </Route>
-        <Route path="/Parties/:id">
+        <Route exact path="/Parties/:id">
           <Nav />
           <Party />
+        </Route>
+        <Route path="/Parties/:id/edit">
+          <Nav />
+          <EditParty />
         </Route>
         <Route path="/Submit">
           <Nav />

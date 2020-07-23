@@ -71,11 +71,41 @@ namespace Tailgate.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
         public async Task<IActionResult> PutParty(int id, Party party)
         {
             if (id != party.Id)
             {
                 return BadRequest();
+            }
+
+            // var partyInDatabase = await _context.Parties.FindAsync(id);
+
+            // if (partyInDatabase == null)
+            // {
+            //     return NotFound();
+            // }
+            // if (partyInDatabase.UserId != GetCurrentUserId())
+            // {
+            //     return NotFound();
+
+            // }
+
+            // Create a new geocoder
+            var geocoder = new BingMapsGeocoder(BING_MAPS_KEY);
+
+            // Request this address to be geocoded.
+            var geocodedAddresses = await geocoder.GeocodeAsync(party.Address);
+
+            // ... and pick out the best address sorted by the confidence level
+            var bestGeocodedAddress = geocodedAddresses.OrderBy(address => address.Confidence).LastOrDefault();
+
+            // If we have a best geocoded address, use the latitude and longitude from that result
+            if (bestGeocodedAddress != null)
+            {
+                party.Latitude = bestGeocodedAddress.Coordinates.Latitude;
+                party.Longitude = bestGeocodedAddress.Coordinates.Longitude;
             }
 
             _context.Entry(party).State = EntityState.Modified;
@@ -99,7 +129,7 @@ namespace Tailgate.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(party);
         }
 
 
