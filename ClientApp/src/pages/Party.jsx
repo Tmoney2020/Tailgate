@@ -39,6 +39,7 @@ export function Party() {
     longitude: 0,
     latitude: 0,
     address: '',
+    photoUrl: '',
     comments: [],
   })
 
@@ -91,11 +92,19 @@ export function Party() {
       <div className="backgroundPictureTop">
         <h1>Welcome to {party.name}</h1>
         <div className="pictureBox">
-          <img
-            src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
-            alt="partyPicture"
-            className="partyPicture"
-          />
+          {party.photoURL ? (
+            <img
+              alt="partyPicture"
+              className="partyPicture"
+              src={party.photoURL}
+            />
+          ) : (
+            <img
+              src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
+              alt="partyPicture"
+              className="partyPicture"
+            />
+          )}
         </div>
       </div>
       <div className="partyDetailsWhole">
