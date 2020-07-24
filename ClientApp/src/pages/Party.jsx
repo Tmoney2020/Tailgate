@@ -202,13 +202,10 @@ export function Party() {
               {party.comments.map(comment => (
                 <div key={comment.id} className="col-md-4 text-center">
                   <div className="profile">
-                    <img
-                      src="https://www.vieravet.com/sites/default/files/styles/large/adaptive-image/public/golden-retriever-dog-breed-info.jpg?itok=LCRMRkum"
-                      className="user"
-                    />
+                    <img src={comment.user.profilePhotoURL} className="user" />
                     <blockquote>{comment.body}</blockquote>
                     <h3>
-                      username <span>"{comment.flair}"</span>
+                      {comment.user.email} <span>"{comment.flair}"</span>
                     </h3>
                   </div>
                 </div>

@@ -32,8 +32,6 @@ export function Search() {
   // this is trying to figure out the 2nd filter, remember there on the select is extra info right now
   const [filterType, setFilterType] = useState('')
 
-  console.log(filterType)
-
   useEffect(() => {
     const url =
       filterText.length === 0
@@ -46,12 +44,13 @@ export function Search() {
       })
   }, [filterText])
 
-  // const mapRef = React.useRef()
+  const mapRef = React.useRef()
 
   return (
     <>
       <div className="my-3 d-flex justify-content-center">
         <ReactMapGL
+          ref={mapRef}
           {...viewport}
           onViewportChange={setViewport}
           mapStyle="mapbox://styles/tmoney2020/ckcz7wpq80b751ir0dgv561fk"
@@ -67,10 +66,6 @@ export function Search() {
             onChangeViewport={setSelectedMapParty}
             className="nav"
           />
-          {/* <Directions
-            mapRef={mapRef}
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          /> */}
 
           {selectedMapParty && (
             <Popup
@@ -109,6 +104,10 @@ export function Search() {
                 </span>
               </Marker>
             ))}
+          {/* <Directions
+            mapRef={mapRef}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          /> */}
         </ReactMapGL>
       </div>
       <div className="wholeSearchContainer">

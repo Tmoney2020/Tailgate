@@ -45,7 +45,6 @@ namespace Tailgate.Controllers
         // new values for the record.
         //
         [HttpPost]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult> UploadAsync(IFormFile file)
         {
             // Check this content type against a set of allowed content types

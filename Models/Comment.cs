@@ -10,5 +10,6 @@ namespace Tailgate.Models
         public string Flair { get; set; }
         public int PartyId { get; set; }
         public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

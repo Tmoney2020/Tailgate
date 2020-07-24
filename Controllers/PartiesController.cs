@@ -48,6 +48,7 @@ namespace Tailgate.Controllers
                                 Contains(filter.ToUpper())).
                                 OrderBy(party => party.Name).
                                 Include(party => party.Comments).
+                                ThenInclude(comment => comment.User).
                                 ToListAsync();
 
             }
@@ -59,6 +60,7 @@ namespace Tailgate.Controllers
             var party = await _context.Parties.
                                 Where(party => party.Id == id).
                                 Include(party => party.Comments).
+                                ThenInclude(comment => comment.User).
                                 FirstOrDefaultAsync();
 
 

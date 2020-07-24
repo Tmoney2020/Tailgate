@@ -11,6 +11,9 @@ export function Profile() {
     fullName: '',
     email: '',
     password: '',
+    username: '',
+    team: '',
+    profilePhotoURL: '',
   })
 
   const onDropFile = async acceptedFiles => {
@@ -44,7 +47,7 @@ export function Profile() {
 
       const url = apiResponse.url
 
-      setNewUser({ ...newUser, photoURL: url })
+      setNewUser({ ...newUser, profilePhotoURL: url })
     } else {
       setErrorMessage('Unable to upload image')
     }
@@ -82,7 +85,7 @@ export function Profile() {
           const newMessage = Object.values(apiData.errors).join(' ')
           setErrorMessage(newMessage)
         } else {
-          history.push('/Search')
+          history.push('/')
         }
       })
   }
@@ -122,7 +125,7 @@ export function Profile() {
             type="username"
             className="form-control"
             id="username"
-            // value={newUser.email}
+            value={newUser.username}
             onChange={handleInputFieldsForSubmit}
           />
         </div>
@@ -142,7 +145,7 @@ export function Profile() {
             type="team"
             className="form-control"
             id="team"
-            value={newUser.email}
+            value={newUser.team}
             onChange={handleInputFieldsForSubmit}
           />
         </div>
