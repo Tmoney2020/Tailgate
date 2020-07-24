@@ -11,6 +11,10 @@ namespace Tailgate.Models
         public string FullName { get; set; }
         [Required]
         public string Email { get; set; }
+        public string Username { get; set; }
+        public string Team { get; set; }
+
+        public string ProfilePhotoURL { get; set; }
         [JsonIgnore]
         public string HashedPassword { get; set; }
         public string Password

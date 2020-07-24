@@ -1,6 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import ReactMapGL, { Popup, Marker, GeolocateControl } from 'react-map-gl'
+import React, { useState, useEffect, useRef } from 'react'
+import ReactMapGL, {
+  Popup,
+  Marker,
+  GeolocateControl,
+  NavigationControl,
+} from 'react-map-gl'
 import { Link } from 'react-router-dom'
+// import Directions from 'react-map-gl-directions'
+// import 'mapbox-gl/dist/mapbox-gl.css'
+// import 'react-map-gl-directions/dist/mapbox-gl-directions.css'
 
 export function Search() {
   const [parties, setParties] = useState([])
@@ -16,7 +24,6 @@ export function Search() {
 
   const geolocateStyle = {
     float: 'left',
-    margin: '50px',
     padding: '10px',
   }
 
@@ -39,20 +46,32 @@ export function Search() {
       })
   }, [filterText])
 
+  // const mapRef = React.useRef()
+
   return (
     <>
       <div className="my-3 d-flex justify-content-center">
         <ReactMapGL
           {...viewport}
           onViewportChange={setViewport}
-          mapStyle="mapbox://styles/mapbox/streets-v11"
+          mapStyle="mapbox://styles/tmoney2020/ckcz7wpq80b751ir0dgv561fk"
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         >
           <GeolocateControl
+            className="geo"
             style={geolocateStyle}
             positionOptions={{ enableHighAccuracy: true }}
             trackUserLocation={true}
           />
+          <NavigationControl
+            onChangeViewport={setSelectedMapParty}
+            className="nav"
+          />
+          {/* <Directions
+            mapRef={mapRef}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          /> */}
+
           {selectedMapParty && (
             <Popup
               latitude={selectedMapParty.latitude}
@@ -149,9 +168,6 @@ export function Search() {
             <SinglePartyForList key={party.id} party={party} />
           ))}
         </div>
-      </div>
-      <div class="jumbotron mr-3 ml-3 mt-2">
-        <h1 class="display-4">This is where the map is going to go</h1>
       </div>
     </>
   )

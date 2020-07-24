@@ -194,6 +194,24 @@ select {
 }
 
 // start of the search page
+.nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.geo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+  margin: 5px;
+}
+
 .mapboxgl-popup {
   z-index: 1;
 }
