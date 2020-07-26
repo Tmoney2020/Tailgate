@@ -46,7 +46,7 @@ namespace Tailgate.Controllers
                 return await _context.Parties.
                                 Where(party => party.Name.ToUpper().
                                 Contains(filter.ToUpper())).
-                                OrderBy(party => party.Name).
+                                OrderBy(party => party.Date).
                                 Include(party => party.Comments).
                                 ThenInclude(comment => comment.User).
                                 ToListAsync();
@@ -82,17 +82,13 @@ namespace Tailgate.Controllers
                 return BadRequest();
             }
 
-            // var partyInDatabase = await _context.Parties.FindAsync(id);
-
-            // if (partyInDatabase == null)
-            // {
-            //     return NotFound();
-            // }
-            // if (partyInDatabase.UserId != GetCurrentUserId())
-            // {
-            //     return NotFound();
-
-            // }
+            // Find this restaurant by looking for the specific id *AND* check the UserID against the current logged in user
+            var partyExists = await _context.Parties.Where(party => party.Id == id && party.UserId == GetCurrentUserId()).AnyAsync();
+            if (!partyExists)
+            {
+                // There wasn't a restaurant with that id so return a `404` not found
+                return NotFound();
+            }
 
             // Create a new geocoder
             var geocoder = new BingMapsGeocoder(BING_MAPS_KEY);

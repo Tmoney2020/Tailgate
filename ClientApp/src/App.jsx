@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 
@@ -11,8 +11,18 @@ import { Party } from './pages/Party'
 import { Comments } from './components/Comments'
 import { Profile } from './pages/Profile'
 import { EditParty } from './pages/editParty'
+import { EditingProfile } from './pages/EditProfile'
 
 export function App() {
+  const [loggedInUser, setLoggedInUser] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    username: '',
+    team: '',
+    profilePhotoURL: '',
+  })
+
   return (
     <>
       <Switch>
@@ -23,12 +33,15 @@ export function App() {
           <Login />
         </Route>
         <Route path="/Search">
-          <Nav />
+          <Nav loggedInUser={loggedInUser} />
           <Search />
         </Route>
         <Route exact path="/Parties/:id">
           <Nav />
-          <Party />
+          <Party
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
+          />
         </Route>
         <Route path="/Parties/:id/edit">
           <Nav />
@@ -37,6 +50,10 @@ export function App() {
         <Route path="/Submit">
           <Nav />
           <Submit />
+        </Route>
+        <Route exact path="/Profile/:id">
+          <Nav />
+          <EditingProfile />
         </Route>
         <Route path="/Profile">
           <Nav />

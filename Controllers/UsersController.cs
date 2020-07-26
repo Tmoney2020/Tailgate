@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Geocoding.Microsoft;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Tailgate.Models;
 
 namespace Tailgate.Controllers
@@ -25,6 +29,70 @@ namespace Tailgate.Controllers
         {
             _context = context;
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(int id)
+        {
+            var user = await _context.Users.
+                                Where(user => user.Id == id).
+                                FirstOrDefaultAsync();
+
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
+        [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
+        public async Task<IActionResult> PutUser(int id, User user)
+        {
+            if (GetCurrentUserId() != user.Id)
+            {
+                return BadRequest();
+            }
+
+            // if (GetCurrentUserPassword() == null)
+            // {
+            //     return BadRequest();
+
+            // }
+
+            var userExists = await _context.Users.Where(user => user.Id == GetCurrentUserId()).AnyAsync();
+            if (!userExists)
+            {
+                // There wasn't a restaurant with that id so return a `404` not found
+                return NotFound();
+            }
+
+            _context.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+                if (!UserExists(id))
+                {
+
+                    return NotFound();
+                }
+                else
+                {
+
+                    throw;
+                }
+            }
+
+            return Ok(user);
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
@@ -50,6 +118,20 @@ namespace Tailgate.Controllers
             // headers with details of the newly created object.
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
+
+        private bool UserExists(int id)
+        {
+            return _context.Users.Any(user => user.Id == id);
+        }
+        private int GetCurrentUserId()
+        {
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
+        }
+
+        // private string GetCurrentUserPassword()
+        // {
+        //     return (User.Claims.FirstOrDefault(claim => claim.Type == "Password").Value);
+        // }
 
     }
 }

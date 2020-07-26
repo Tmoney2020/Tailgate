@@ -7,7 +7,7 @@ import ReactMapGL, {
 } from 'react-map-gl'
 import { Link } from 'react-router-dom'
 // import Directions from 'react-map-gl-directions'
-// import 'mapbox-gl/dist/mapbox-gl.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 // import 'react-map-gl-directions/dist/mapbox-gl-directions.css'
 
 export function Search() {
@@ -62,10 +62,7 @@ export function Search() {
             positionOptions={{ enableHighAccuracy: true }}
             trackUserLocation={true}
           />
-          <NavigationControl
-            onChangeViewport={setSelectedMapParty}
-            className="nav"
-          />
+          <NavigationControl onChangeViewport={setViewport} className="nav" />
 
           {selectedMapParty && (
             <Popup

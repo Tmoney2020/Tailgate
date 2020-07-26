@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router'
+import React, { useState, useEffect } from 'react'
+import { useHistory, useParams } from 'react-router'
 import { useDropzone } from 'react-dropzone'
 import { authHeader } from '../auth'
 
-export function Profile() {
+export function EditingProfile() {
   const history = useHistory()
   const [errorMessage, setErrorMessage] = useState()
 
-  const [newUser, setNewUser] = useState({
+  const params = useParams()
+  const id = parseInt(params.id)
+
+  const [editingUser, setEditingUser] = useState({
     fullName: '',
     email: '',
     password: '',
@@ -17,19 +20,13 @@ export function Profile() {
   })
 
   const onDropFile = async acceptedFiles => {
-    // Do something with the files
     const fileToUpload = acceptedFiles[0]
     console.log(fileToUpload)
 
-    // Create a formData object so we can send this
-    // to the API that is expecting som form data.
     const formData = new FormData()
 
-    // Append a field that is the form upload itself
     formData.append('file', fileToUpload)
 
-    // Use fetch to send an authorization header and
-    // a body containing the form data with the file
     const response = await fetch('/api/Uploads', {
       method: 'POST',
       headers: {
@@ -38,16 +35,12 @@ export function Profile() {
       body: formData,
     })
 
-    // If we receive a 200 OK response, set the
-    // URL of the photo in our state so that it is
-    // sent along when creating the restaurant,
-    // otherwise show an error
     if (response.status === 200) {
       const apiResponse = await response.json()
 
       const url = apiResponse.url
 
-      setNewUser({ ...newUser, profilePhotoURL: url })
+      setEditingUser({ ...editingUser, profilePhotoURL: url })
     } else {
       setErrorMessage('Unable to upload image')
     }
@@ -63,8 +56,8 @@ export function Profile() {
 
     console.log(whichFieldChanged)
 
-    setNewUser({
-      ...newUser,
+    setEditingUser({
+      ...editingUser,
 
       [whichFieldChanged]: newValue,
     })
@@ -73,16 +66,16 @@ export function Profile() {
   const handleToSubmit = event => {
     event.preventDefault()
 
-    fetch('/api/Users', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(newUser),
+    fetch(`/api/Users/${id}`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+      body: JSON.stringify(editingUser),
     })
       .then(response => response.json())
       .then(apiData => {
         console.log(apiData)
         if (apiData.status === 400) {
-          const newMessage = Object.values(apiData.errors).join(' ')
+          const newMessage = Object.values(apiData.title).join(' ')
           setErrorMessage(newMessage)
         } else {
           history.push('/')
@@ -90,9 +83,19 @@ export function Profile() {
       })
   }
 
+  const fetchUser = () => {
+    fetch(`api/Users/${id}`)
+      .then(response => response.json())
+      .then(apiData => setEditingUser(apiData))
+  }
+
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
   return (
     <div className="card mt-3 ml-2 mr-2">
-      <div className="card-header">Create an Account</div>
+      <div className="card-header">Edit Your Account</div>
       {errorMessage && (
         <div className="alert alert-danger" role="alert">
           {errorMessage}
@@ -105,7 +108,7 @@ export function Profile() {
             type="text"
             className="form-control"
             id="fullName"
-            value={newUser.fullName}
+            value={editingUser.fullName}
             onChange={handleInputFieldsForSubmit}
           />
         </div>
@@ -115,20 +118,52 @@ export function Profile() {
             type="email"
             className="form-control"
             id="email"
-            value={newUser.email}
+            value={editingUser.email}
+            onChange={handleInputFieldsForSubmit}
+          />
+        </div>
+        <div className="form-group ml-5 mr-5 mt-2">
+          <label htmlFor="email">Username</label>
+          <input
+            type="username"
+            className="form-control"
+            id="username"
+            value={editingUser.username}
             onChange={handleInputFieldsForSubmit}
           />
         </div>
         <div className="form-group ml-5 mr-5 mt-2">
           <label htmlFor="password">Password</label>
           <input
+            placeholder="Must Re-enter Password"
             type="password"
             className="form-control"
             id="password"
-            value={newUser.password}
+            value={editingUser.password}
             onChange={handleInputFieldsForSubmit}
           />
         </div>
+        <div className="form-group ml-5 mr-5 mt-2">
+          <label htmlFor="email">Favorite Sports Team</label>
+          <input
+            type="team"
+            className="form-control"
+            id="team"
+            value={editingUser.team}
+            onChange={handleInputFieldsForSubmit}
+          />
+        </div>
+        <div className="alert alert-primary mr-5 ml-5">
+          <div {...getRootProps()}>
+            <input {...getInputProps()} />
+            {isDragActive
+              ? 'Drop the files here ...'
+              : 'Drag a new picture file here to upload!'}
+          </div>
+        </div>
+        <button type="submit" className="btn btn-primary ml-5 mb-1">
+          Submit
+        </button>
         <button type="submit" className="btn btn-primary ml-5 mb-1">
           Submit
         </button>
