@@ -22,7 +22,7 @@ export function Search() {
   console.log(`The Location of the event is ${filterLocation}`)
 
   const [viewport, setViewport] = useState({
-    width: '90%',
+    width: 400,
     height: 400,
     latitude: 27.77101804911986,
     longitude: -82.66090611749074,
@@ -110,7 +110,7 @@ export function Search() {
         </div>
       </div>
       <div className="wholeSearchContainer">
-        <div className="my-3 d-flex justify-content-center">
+        <div className="my-3 d-flex justify-content-center mr-2 ml-2">
           <ReactMapGL
             ref={mapRef}
             {...viewport}
