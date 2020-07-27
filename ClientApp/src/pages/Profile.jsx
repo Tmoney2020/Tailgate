@@ -92,15 +92,17 @@ export function Profile() {
 
   return (
     <div className="wrapper wholeProfilePage">
-      <div className="card ml-2 mr-2 bg-light">
-        <div className="card-header bg-primary text-white">
-          Create an Account
-        </div>
+      <div className="card-body">
         {errorMessage && (
           <div className="alert alert-danger" role="alert">
             {errorMessage}
           </div>
         )}
+      </div>
+      <div className="card ml-2 mr-2 bg-light">
+        <div className="card-header bg-primary text-white">
+          Create Your Account
+        </div>
         <form onSubmit={handleToSubmit}>
           <div className="form-group ml-5 mr-5 mt-2">
             <label htmlFor="fullName">Full Name</label>

@@ -1,23 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { getUserId } from '../auth'
 import ReactMapGL, {
   Popup,
   Marker,
   GeolocateControl,
   NavigationControl,
 } from 'react-map-gl'
-import { Link } from 'react-router-dom'
-// import Directions from 'react-map-gl-directions'
-import 'mapbox-gl/dist/mapbox-gl.css'
-import { getUserId } from '../auth'
-// import 'react-map-gl-directions/dist/mapbox-gl-directions.css'
-
-export function Search() {
+import { SinglePartyForList } from '../App'
+export function MyParties() {
   const [parties, setParties] = useState([])
   const [filterText, setFilterText] = useState('')
   const [filterDate, setFilterDate] = useState('')
   const [filterTypeOfEvent, setFilterTypeOfEvent] = useState('')
   const [filterLocation, setFilterLocation] = useState('')
-
   const [viewport, setViewport] = useState({
     width: 400,
     height: 400,
@@ -25,14 +21,11 @@ export function Search() {
     longitude: -82.66090611749074,
     zoom: 8,
   })
-
   const geolocateStyle = {
     float: 'left',
     padding: '10px',
   }
-
   const [selectedMapParty, setSelectedMapParty] = useState(null)
-
   useEffect(() => {
     const url =
       filterText.length === 0 &&
@@ -46,10 +39,8 @@ export function Search() {
         setParties(apiData)
       })
   }, [filterText, filterDate, filterTypeOfEvent])
-
   const mapRef = React.useRef()
   const currentUserId = getUserId()
-
   return (
     <>
       <div className="searchImageContainer">
@@ -58,7 +49,7 @@ export function Search() {
           alt="tailgate"
           className="searchPicture"
         />
-        <div class="centered">Find Your Tailgate Party</div>
+        <div class="centered">Your Tailgate Parties</div>
       </div>
       <div className="leftSideSearch">
         <div className="searchCriteria">
@@ -165,10 +156,6 @@ export function Search() {
                   </span>
                 </Marker>
               ))}
-            {/* <Directions
-            mapRef={mapRef}
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          /> */}
           </ReactMapGL>
         </div>
         <div class="list-group rightSideSearch">
@@ -181,47 +168,14 @@ export function Search() {
               onChange={event => setFilterText(event.target.value)}
             />
           </li>
-          {parties.map(party => (
-            <SinglePartyForList key={party.id} party={party} />
-          ))}
+          {parties.map(
+            party =>
+              party.userId === currentUserId && (
+                <SinglePartyForList key={party.id} party={party} />
+              )
+          )}
         </div>
       </div>
     </>
-  )
-}
-
-function SinglePartyForList(props) {
-  return (
-    <Link
-      to={`/Parties/${props.party.id}`}
-      className="list-group-item list-group-item-action thumbnailParty mb-2 mr-2"
-    >
-      <div className="listPartyLeft">
-        <p>{props.party.name}</p>
-        {props.party.photoURL ? (
-          <img
-            alt="partyPhoto"
-            className="pictureThumbnail"
-            src={props.party.photoURL}
-          />
-        ) : (
-          <img
-            src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
-            alt="partyPhoto"
-            className="pictureThumbnail"
-          />
-        )}
-      </div>
-      <div className="listPartyCenter">
-        <p className="textCenter">{props.party.description}</p>
-      </div>
-      <div className="listPartyRight">
-        <p>{props.party.type}</p>
-        <p>{props.party.date}</p>
-        <p>
-          {props.party.startTime}-{props.party.endTime}
-        </p>
-      </div>
-    </Link>
   )
 }

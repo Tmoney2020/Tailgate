@@ -73,6 +73,11 @@ export function Nav(props) {
                     {isLoggedIn() && <Link to="/Submit">Create Tailgate</Link>}
                   </li>
                 </li>
+                <li className="nav-item">
+                  <li className="navRight Create nav-link scroll-link">
+                    {isLoggedIn() && <Link to="/MyParties">My Parties</Link>}
+                  </li>
+                </li>
               </ul>
             </div>
           </div>

@@ -12,6 +12,43 @@ import { Comments } from './components/Comments'
 import { Profile } from './pages/Profile'
 import { EditParty } from './pages/editParty'
 import { EditingProfile } from './pages/EditProfile'
+import { MyParties } from './pages/MyParties'
+
+export function SinglePartyForList(props) {
+  return (
+    <Link
+      to={`/Parties/${props.party.id}`}
+      className="list-group-item list-group-item-action thumbnailParty mb-2 mr-2"
+    >
+      <div className="listPartyLeft">
+        <p>{props.party.name}</p>
+        {props.party.photoURL ? (
+          <img
+            alt="partyPhoto"
+            className="pictureThumbnail"
+            src={props.party.photoURL}
+          />
+        ) : (
+          <img
+            src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
+            alt="partyPhoto"
+            className="pictureThumbnail"
+          />
+        )}
+      </div>
+      <div className="listPartyCenter">
+        <p className="textCenter">{props.party.description}</p>
+      </div>
+      <div className="listPartyRight">
+        <p>{props.party.type}</p>
+        <p>{props.party.date}</p>
+        <p>
+          {props.party.startTime}-{props.party.endTime}
+        </p>
+      </div>
+    </Link>
+  )
+}
 
 export function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -54,6 +91,10 @@ export function App() {
         <Route exact path="/Profile/:id">
           <Nav />
           <EditingProfile />
+        </Route>
+        <Route exact path="/MyParties">
+          <Nav />
+          <MyParties />
         </Route>
         <Route path="/Profile">
           <Nav />

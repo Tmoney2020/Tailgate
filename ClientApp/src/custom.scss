@@ -94,11 +94,7 @@ code {
   height: 44px;
   border: 0;
   position: relative;
-  right: 0%;
-}
-
-.welcome {
-  margin-right: 0;
+  right: 1px;
 }
 
 // start of the Login screen styling
@@ -217,7 +213,7 @@ select {
   width: 100%;
   height: auto;
   max-height: 500px;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .searchImageContainer {
@@ -232,12 +228,11 @@ select {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -150%);
-  font-size: 2rem;
-}
-
-.mapBox {
-  margin: 2rem;
+  transform: translate(-50%, -75%);
+  font-size: 3rem;
+  background: -webkit-linear-gradient(rgb(255, 46, 46), rgb(8, 91, 216));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav {
@@ -262,12 +257,19 @@ select {
   z-index: 1;
 }
 
+.mapBoarder {
+  border: 1px solid rgb(153, 173, 240);
+  box-shadow: 0 2px 5px 1px rgba(51, 51, 51, 0.5);
+}
+
+.searchBar {
+  background-color: rgb(211, 231, 248);
+}
+
 .wholeSearchContainer {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  border-top: 2px solid rgb(221, 219, 219);
-  border-bottom: 2px solid rgb(221, 219, 219);
   border-right: 2px solid rgb(221, 219, 219);
   border-radius: 0.3rem;
 }
@@ -276,21 +278,11 @@ select {
   width: 100%;
   height: auto;
   list-style: none;
-  background-color: rgb(238, 238, 238);
-}
-
-.leftSideSearch ul li {
-  list-style: none;
-  margin-right: 2rem;
-}
-
-.leftSideSearch h3 {
-  text-align: center;
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(211, 231, 248);
 }
 
 .smallSearch {
-  max-width: 200px;
+  width: 300px;
 }
 
 .rightSideSearch {
@@ -302,12 +294,12 @@ select {
 
 .thumbnailParty {
   display: flex;
-  // flex-direction: column;
-  justify-content: space-evenly;
+  background-color: rgb(241, 239, 239);
 }
 
 .listPartyRight {
   font-size: 0.8rem;
+  align-items: flex-start;
 }
 
 .listPartyLeft {
@@ -561,8 +553,6 @@ blockquote::after {
     display: flex;
     flex-direction: row;
     margin-top: 1rem;
-    border-top: 2px solid rgb(221, 219, 219);
-    border-bottom: 2px solid rgb(221, 219, 219);
     border-right: 2px solid rgb(221, 219, 219);
     border-radius: 0.3rem;
   }
@@ -571,7 +561,7 @@ blockquote::after {
     width: 100%;
     height: auto;
     list-style: none;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(198, 223, 243);
     display: flex;
     justify-content: space-between;
   }
