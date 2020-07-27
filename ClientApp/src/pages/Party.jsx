@@ -202,11 +202,21 @@ export function Party() {
               {party.comments.map(comment => (
                 <div key={comment.id} className="col-md-4 text-center">
                   <div className="profile">
-                    <img src={comment.user.profilePhotoURL} className="user" />
+                    {comment.user.profilePhotoURL ? (
+                      <img
+                        alt="user"
+                        className="user"
+                        src={comment.user.profilePhotoURL}
+                      />
+                    ) : (
+                      <img
+                        src="https://www.improvutopia.com/wp-content/uploads/2016/02/empty.png.jpeg"
+                        alt="user"
+                        className="user"
+                      />
+                    )}
                     <blockquote>{comment.body}</blockquote>
-                    <h3>
-                      {comment.user.email} <span>"{comment.flair}"</span>
-                    </h3>
+                    <h3>{comment.user.username}</h3>
                   </div>
                 </div>
               ))}
