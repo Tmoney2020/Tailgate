@@ -1,3 +1,5 @@
+@import url('https://fonts.google.com/specimen/Tangerine?category=Handwriting&selection.family=Tangerine:wght@700');
+
 html,
 body {
   height: 100vh;
@@ -23,76 +25,91 @@ code {
   background-size: cover;
 }
 
-// Start of Nav bar Styling
-nav {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.05);
-  position: sticky !important;
+// Nav bar
+
+.navbar {
+  background: #444;
+  transition: all 0.6s;
+  backface-visibility: hidden;
+  box-shadow: 0 2px 5px 1px rgba(51, 51, 51, 0.5);
   z-index: 1;
+  position: sticky;
+  width: 100%;
   top: 0;
-  min-width: 100%;
-  background-color: rgba(255, 255, 255, 0.75);
-  opacity: 0.8;
-  font-family: sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #24292e;
+  opacity: 0.9;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-nav ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
+.navbar-dark .navbar-nav {
+  font-size: 15px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
+  border: 0;
+}
+
+.nav-item a {
+  color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus {
+  color: #fff;
+  outline: 0;
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: #444;
+}
+
+.navbar-dark .navbar-toggler:focus {
+  background: none;
+  outline: 0;
+}
+
+.navbar-dark .navbar-toggler span {
+  display: block;
+  width: 30px;
+  height: 2px;
+  margin: 6px auto;
+  background: #fff;
+  transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.navbar-dark .navbar-toggler:hover span,
+.navbar-dark .navbar-toggler:focus span {
+  background: #ccc;
+}
+
+.navbar-brand {
+  width: 162px;
+  height: 44px;
+  border: 0;
   position: relative;
-  align-items: center;
-}
-
-nav a:link,
-nav a:visited,
-html a:link,
-html a:visited {
-  text-decoration: none;
-  color: black;
-}
-
-a:link.Home,
-a:visited.Home {
-  color: grey;
-}
-
-nav ul li img {
-  width: 50px;
-}
-
-li.navLeft {
-  font-size: 16px;
-  font-weight: 600;
-  color: #24292e;
-  line-height: 1.5;
-  font-family: sans-serif;
-}
-
-li.navRight {
-  position: absolute;
-  font-size: 16px;
-  color: #24292e;
   right: 0%;
 }
 
-li.navRight.Create {
-  right: 150px;
-  margin-right: 1rem;
-}
-
-li.navRight.Search {
-  right: 100px;
-}
-
-li.navRight.Login {
-  right: 50px;
+.welcome {
+  margin-right: 0;
 }
 
 // start of the Login screen styling
+
+.loginInTitle {
+  font-family: 'Tangerine';
+  color: rgb(255, 239, 239);
+  font-weight: 700;
+  background-color: black;
+  opacity: 0.7;
+}
 
 div.Login-Container {
   border: 3px outset grey;
@@ -194,6 +211,35 @@ select {
 }
 
 // start of the search page
+
+.searchPicture {
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  opacity: 0.6;
+}
+
+.searchImageContainer {
+  position: relative;
+  text-align: center;
+  color: black;
+  font-family: 'Tangerine';
+  font-weight: 700;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -150%);
+  font-size: 2rem;
+}
+
+.mapBox {
+  margin: 2rem;
+}
+
 .nav {
   position: absolute;
   top: 0;
@@ -277,10 +323,8 @@ select {
 .pictureThumbnail {
   border: 1px solid #ddd;
   padding: 5px;
-  min-width: 100px;
-  max-width: 150px;
-  min-height: 100px;
-  max-height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 // start of the Party page
@@ -500,6 +544,11 @@ blockquote::after {
   transition: 0.5s;
 }
 
+// profile styling page
+.wholeProfilePage {
+  background-color: rgb(236, 235, 235);
+}
+
 @media all and (min-width: 768px) {
   // this styles the search bar and results
   .thumbnailParty {
@@ -519,20 +568,17 @@ blockquote::after {
   }
 
   .leftSideSearch {
-    width: 225px;
-    height: 500px;
+    width: 100%;
+    height: auto;
     list-style: none;
     background-color: rgb(238, 238, 238);
+    display: flex;
+    justify-content: space-between;
   }
 
-  .leftSideSearch ul li {
-    list-style: none;
-    margin-right: 2rem;
-  }
-
-  .leftSideSearch h3 {
-    text-align: center;
-    background-color: rgb(238, 238, 238);
+  .searchCriteria {
+    display: flex;
+    flex-direction: row;
   }
 
   // This is the picture on right side

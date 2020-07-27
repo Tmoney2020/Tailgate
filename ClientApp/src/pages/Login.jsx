@@ -53,6 +53,8 @@ export function Login() {
           {errorMessage}
         </div>
       )}
+      <h1 className="loginInTitle">Welcome to Tailgate</h1>
+
       <form onSubmit={handleToSubmit}>
         <div className="Login-Container">
           <ul className="login">
@@ -90,7 +92,7 @@ export function Login() {
           <ul className="loginTwo">
             <li>
               <Link to="/Profile">
-                <button className="createAccount" to="#">
+                <button className="createAccount" to="/Profile">
                   Create an account
                 </button>
               </Link>

@@ -30,28 +30,33 @@ namespace Tailgate.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Party>>> GetParties(string filter)
+        public async Task<ActionResult<IEnumerable<Party>>> GetParties(string filter, string dateFilter, string typeFilter)
         {
-            if (filter == null)
-            {
-                return await _context.Parties.
-                                OrderBy(party => party.Name).
-                                Include(party => party.Comments).
-                                ToListAsync();
+            var parties = _context.Parties.AsQueryable();
 
-            }
-            else
+            if (filter != null)
             {
-                // this is now filtering the parties by their name 
-                return await _context.Parties.
-                                Where(party => party.Name.ToUpper().
+                parties = parties.Where(party => party.Name.ToUpper().
                                 Contains(filter.ToUpper())).
-                                OrderBy(party => party.Date).
                                 Include(party => party.Comments).
-                                ThenInclude(comment => comment.User).
-                                ToListAsync();
+                                ThenInclude(comment => comment.User);
 
             }
+            if (dateFilter != null)
+            {
+                parties = parties.Where(party => party.Date == dateFilter).
+                                Include(party => party.Comments).
+                                ThenInclude(comment => comment.User);
+            }
+            if (typeFilter != null)
+            {
+                parties = parties.Where(party => party.Type == typeFilter).
+                                Include(party => party.Comments).
+                                ThenInclude(comment => comment.User);
+            }
+            return await parties.OrderBy(party => party.Date).
+                                Include(party => party.Comments).
+                                ThenInclude(comment => comment.User).ToListAsync();
         }
 
         [HttpGet("{id}")]
