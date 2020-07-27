@@ -238,8 +238,8 @@ select {
 
 .nav {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 70px;
+  left: 0;
   padding: 5px;
   margin: 5px;
   display: flex;
@@ -248,7 +248,7 @@ select {
 
 .geo {
   position: absolute;
-  top: 0;
+  top: 8px;
   left: 0;
   padding: 5px;
   margin: 5px;

@@ -6,9 +6,11 @@ import ReactMapGL, {
   NavigationControl,
 } from 'react-map-gl'
 import { Link } from 'react-router-dom'
-// import Directions from 'react-map-gl-directions'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { getUserId } from '../auth'
+import Geocoder from 'react-map-gl-geocoder'
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+// import Directions from 'react-map-gl-directions'
 // import 'react-map-gl-directions/dist/mapbox-gl-directions.css'
 
 export function Search() {
@@ -118,6 +120,12 @@ export function Search() {
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             className="mapBoarder"
           >
+            <Geocoder
+              className="geoSearch"
+              mapRef={mapRef}
+              onViewportChange={setViewport}
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            />
             <GeolocateControl
               className="geo"
               style={geolocateStyle}
