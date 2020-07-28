@@ -2,6 +2,8 @@
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
+
 
 namespace Tailgate.Models
 {
@@ -36,7 +38,7 @@ namespace Tailgate.Models
 
                 var conn = databaseURL != null ? ConvertPostConnectionToConnectionString(databaseURL) : defaultConnectionString;
 
-                optionsBuilder.UseNpgsql(conn);
+                optionsBuilder.UseNpgsql(conn, postgresOptions => postgresOptions.UseNetTopologySuite());
             }
         }
 

@@ -39,15 +39,16 @@ export function Search() {
     const url =
       filterText.length === 0 &&
       filterTypeOfEvent.length === 0 &&
+      filterLocation.length === 0 &&
       filterDate.length === 0
         ? `/api/Parties`
-        : `/api/Parties?filter=${filterText}&typeFilter=${filterTypeOfEvent}&dateFilter=${filterDate}`
+        : `/api/Parties?filter=${filterText}&typeFilter=${filterTypeOfEvent}&dateFilter=${filterDate}&locationFilter=${filterLocation}`
     fetch(url)
       .then(response => response.json())
       .then(apiData => {
         setParties(apiData)
       })
-  }, [filterText, filterDate, filterTypeOfEvent])
+  }, [filterText, filterDate, filterTypeOfEvent, filterLocation])
 
   const mapRef = React.useRef()
   const currentUserId = getUserId()

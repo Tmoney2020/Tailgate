@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Tailgate.Models;
+using NetTopologySuite.Geometries;
+
 
 namespace Tailgate.Controllers
 {
@@ -30,7 +32,7 @@ namespace Tailgate.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Party>>> GetParties(string filter, string dateFilter, string typeFilter)
+        public async Task<ActionResult<IEnumerable<Party>>> GetParties(string filter, string dateFilter, string typeFilter, string locationFilter)
         {
             var parties = _context.Parties.AsQueryable();
 
@@ -42,17 +44,46 @@ namespace Tailgate.Controllers
                                 ThenInclude(comment => comment.User);
 
             }
+
             if (dateFilter != null)
             {
                 parties = parties.Where(party => party.Date == dateFilter).
                                 Include(party => party.Comments).
                                 ThenInclude(comment => comment.User);
             }
+
             if (typeFilter != null)
             {
                 parties = parties.Where(party => party.Type == typeFilter).
                                 Include(party => party.Comments).
                                 ThenInclude(comment => comment.User);
+            }
+
+            if (locationFilter != null)
+            {
+                Console.WriteLine($"The location filter is {locationFilter}");
+                // Create a new geocoder
+                var geocoder = new BingMapsGeocoder(BING_MAPS_KEY);
+
+                // Request this address to be geocoded.
+                var geocodedAddresses = await geocoder.GeocodeAsync(locationFilter);
+
+                // ... and pick out the best address sorted by the confidence level
+                var bestGeocodedAddress = geocodedAddresses.Where(address => address.Confidence == ConfidenceLevel.High).OrderBy(address => address.Confidence).LastOrDefault();
+
+                // If we have a best geocoded address, use the latitude and longitude from that result
+                if (bestGeocodedAddress != null)
+                {
+                    var location = new Point(bestGeocodedAddress.Coordinates.Latitude, bestGeocodedAddress.Coordinates.Longitude)
+                    {
+                        SRID = 4326
+                    };
+                    parties = parties.Where(party => party.Location.Distance(location) <= .144);
+                }
+                else
+                {
+                    parties = parties.Where(party => party.Id == 0);
+                }
             }
             return await parties.OrderBy(party => party.Date).
                                 Include(party => party.Comments).
@@ -107,8 +138,10 @@ namespace Tailgate.Controllers
             // If we have a best geocoded address, use the latitude and longitude from that result
             if (bestGeocodedAddress != null)
             {
-                party.Latitude = bestGeocodedAddress.Coordinates.Latitude;
-                party.Longitude = bestGeocodedAddress.Coordinates.Longitude;
+                party.Location = new Point(bestGeocodedAddress.Coordinates.Latitude, bestGeocodedAddress.Coordinates.Longitude)
+                {
+                    SRID = 4326
+                };
             }
 
             _context.Entry(party).State = EntityState.Modified;
@@ -152,8 +185,10 @@ namespace Tailgate.Controllers
             // If we have a best geocoded address, use the latitude and longitude from that result
             if (bestGeocodedAddress != null)
             {
-                party.Latitude = bestGeocodedAddress.Coordinates.Latitude;
-                party.Longitude = bestGeocodedAddress.Coordinates.Longitude;
+                party.Location = new Point(bestGeocodedAddress.Coordinates.Latitude, bestGeocodedAddress.Coordinates.Longitude)
+                {
+                    SRID = 4326
+                };
             }
 
 
