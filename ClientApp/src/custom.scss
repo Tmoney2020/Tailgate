@@ -258,12 +258,6 @@ select {
   z-index: 1;
 }
 
-.popOut {
-  color: blue;
-  font-size: 16px;
-  font-style: italic;
-}
-
 .mapBoarder {
   border: 1px solid rgb(153, 173, 240);
   box-shadow: 0 2px 5px 1px rgba(51, 51, 51, 0.5);
@@ -326,10 +320,29 @@ select {
   height: 150px;
 }
 
+.searchFooter {
+  height: 50px;
+  background-size: 100%;
+  background: #444;
+  box-shadow: 0 2px 5px 1px rgba(51, 51, 51, 0.5);
+  z-index: 1;
+  width: 100%;
+  bottom: 0;
+  opacity: 0.9;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 // start of the Party page
 
 .wholePartyPage {
   background-color: rgb(236, 235, 235);
+}
+
+.partyTitle {
+  font-family: 'Tangerine';
+  color: rgb(9, 13, 245);
+  text-shadow: 2px 2px 3px #5ac2d4, 0 0 5px #f77272;
 }
 
 .backgroundPictureTop {
@@ -350,8 +363,8 @@ select {
 }
 
 .partyPicture {
-  width: 75%;
-  max-width: 700px;
+  width: 65%;
+  max-width: 600px;
   max-height: 400px;
   align-items: center;
   margin-bottom: 1rem;
@@ -377,24 +390,6 @@ select {
   width: 99%;
 }
 
-.attending {
-  display: flex;
-  flex-direction: column;
-  margin-top: 2rem;
-  margin-left: 2rem;
-  width: 50%;
-  margin-bottom: 0%;
-}
-
-.attending p {
-  text-align: center;
-}
-
-.attendingButton {
-  width: 33.33%;
-  height: fit-content;
-}
-
 .affirmation {
   display: flex;
   justify-content: space-evenly;
@@ -414,6 +409,7 @@ select {
   width: 50%;
   max-width: 350px;
   margin-right: 1rem;
+  font-family: 'Tangerine';
 }
 
 .menu {
@@ -424,14 +420,64 @@ select {
   border-radius: 0.3rem;
   width: 50%;
   max-height: auto;
+  font-family: 'Tangerine';
+}
+
+.partyDetailsTopLeft {
+  width: 50%;
+  max-width: 350px;
+  margin-right: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin-top: 2rem;
+  font-family: 'Tangerine';
+}
+
+.partyDetailsTopRight {
+  max-width: 350px;
+  width: 50%;
+  max-height: auto;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  font-family: 'Tangerine';
+}
+
+.popOut {
+  color: rgb(17, 120, 255);
+  font-size: 1.2rem;
+  font-style: italic;
 }
 
 .minorDetails {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+  max-width: 700px;
 }
 
+.partyMinorDetails {
+  font-size: 1.2rem;
+  color: rgb(17, 120, 255);
+  font-family: 'Tangerine';
+}
+
+.addressFont {
+  font-family: 'Tangerine';
+}
+
+.footer {
+  height: 100px;
+  background-size: 100%;
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0),
+      rgba(236, 235, 235, 1)
+    ),
+    url('https://i.pinimg.com/originals/a6/16/b9/a616b96b4ec46c0b61ad40d43f638c82.jpg');
+}
 // this is the start of comments styling
 
 h1 {
@@ -439,7 +485,7 @@ h1 {
 }
 
 .comments {
-  margin: 50px auto;
+  margin: 0px auto;
 }
 
 .comments h1 {

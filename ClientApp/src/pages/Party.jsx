@@ -102,170 +102,190 @@ export function Party() {
   }
 
   return (
-    <div className="wrapper wholePartyPage">
-      <div className="backgroundPictureTop">
-        <h1>Welcome to {party.name}</h1>
-        <div className="pictureBox">
-          {party.photoURL ? (
-            <img
-              alt="partyPicture"
-              className="partyPicture"
-              src={party.photoURL}
-            />
-          ) : (
-            <img
-              src="https://thetailgatelife.com/wp-content/uploads/2019/03/Screen-Shot-2019-03-23-at-03.29.03-1042x675.png"
-              alt="partyPicture"
-              className="partyPicture"
-            />
-          )}
-        </div>
-      </div>
-      <div className="partyDetailsWhole">
-        <div className="partyDetails">
-          <p className="description">Description: {party.description}</p>
-          <p className="menu">Menu: {party.menu}</p>
-        </div>
-        <div className="minorDetails">
-          <p>Date: {party.date}</p>
-          <p>Start Time: {party.startTime}</p>
-          <p>End Time: {party.endTime}</p>
-        </div>
-        <div className="map d-flex-column justify-content-center">
-          <div className="mapAndAttending ">
-            <ReactMapGL
-              ref={mapRef}
-              {...viewport}
-              onViewportChange={setViewport}
-              mapStyle="mapbox://styles/tmoney2020/ckcz7wpq80b751ir0dgv561fk"
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-              className="mapBoarder"
-            >
-              <Geocoder
-                className="geoSearch"
-                mapRef={mapRef}
-                onViewportChange={setViewport}
-                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+    <>
+      <div className="wrapper wholePartyPage">
+        <div className="backgroundPictureTop p-2">
+          <div className="pictureBox">
+            {party.photoURL ? (
+              <img
+                alt="partyPicture"
+                className="partyPicture"
+                src={party.photoURL}
               />
-              <GeolocateControl
-                className="geo"
-                style={geolocateStyle}
-                positionOptions={{ enableHighAccuracy: true }}
-                trackUserLocation={true}
+            ) : (
+              <img
+                src="https://thetailgatelife.com/wp-content/uploads/2019/03/Screen-Shot-2019-03-23-at-03.29.03-1042x675.png"
+                alt="partyPicture"
+                className="partyPicture"
               />
-              <NavigationControl
-                onChangeViewport={setViewport}
-                className="nav"
-              />
-
-              {selectedMapParty && (
-                <Popup
-                  latitude={selectedMapParty.latitude}
-                  longitude={selectedMapParty.longitude}
-                  closeButton={true}
-                  closeOnClick={false}
-                  onClose={() => setSelectedMapParty(null)}
-                  offsetTop={-5}
-                >
-                  <div className="card my-3">
-                    <div className="card-header bg-info">
-                      <Link
-                        className="text-white"
-                        to={`/Parties/${selectedMapParty.id}`}
-                      >
-                        {selectedMapParty.name}
-                      </Link>
-                    </div>
-                    <div className="card-body">{selectedMapParty.address}</div>
-                    <div className="card-body">
-                      <span className="popOut">Times:</span>{' '}
-                      {selectedMapParty.startTime}-{selectedMapParty.endTime}{' '}
-                      <span className="popOut">Date:</span>{' '}
-                      {selectedMapParty.date}
-                    </div>
-                  </div>
-                </Popup>
-              )}
-
-              <Marker latitude={party.latitude} longitude={party.longitude}>
-                <span
-                  role="img"
-                  aria-label="flag"
-                  onClick={() => setSelectedMapParty(party)}
-                >
-                  🚩
-                </span>
-              </Marker>
-            </ReactMapGL>
-            <p className="text-center">
-              {party.address ? (
-                <p className="text-center">
-                  <span className="popOut">Address:</span> {party.address}
-                </p>
-              ) : (
-                <p className="text-center">
-                  <span className="popOut">Address Unknown</span>
-                </p>
-              )}
-            </p>
-          </div>
-        </div>
-      </div>
-      <form onSubmit={handleNewCommentSubmit}>
-        <section className="comments">
-          <div className="commentContainer">
-            <h1>Post a Comment</h1>
-            <p className="text-center">Leave here comment here.</p>
-            <textarea
-              placeholder="Add Comment"
-              id="body"
-              value={newComment.body}
-              onChange={handleNewCommentFieldChange}
-            />
-            <button className="btn btn-primary mt-2" type="submit">
-              Submit
-            </button>
-            {currentUserId === party.userId && (
-              <>
-                <button className="btn btn-danger mt-2" onClick={handleDelete}>
-                  Delete Party
-                </button>
-                <Link
-                  to={`/Parties/${id}/edit`}
-                  className="btn btn-primary btn-sm mt-1"
-                >
-                  Edit Party
-                </Link>
-              </>
             )}
           </div>
-          {party.comments.length > 0 && (
-            <div className="row">
-              {party.comments.map(comment => (
-                <div key={comment.id} className="col-md-4 text-center">
-                  <div className="profile">
-                    {comment.user.profilePhotoURL ? (
-                      <img
-                        alt="user"
-                        className="user"
-                        src={comment.user.profilePhotoURL}
-                      />
-                    ) : (
-                      <img
-                        src="https://www.improvutopia.com/wp-content/uploads/2016/02/empty.png.jpeg"
-                        alt="user"
-                        className="user"
-                      />
-                    )}
-                    <blockquote>{comment.body}</blockquote>
-                    <h3>{comment.user.username}</h3>
+          <h1 className="partyTitle">Welcome to {party.name}</h1>
+        </div>
+        <div className="partyDetailsWhole">
+          <div className="minorDetails">
+            <p>
+              <span className="partyMinorDetails">Date:</span> {party.date}
+            </p>
+            <p>
+              <span className="partyMinorDetails">Start Time:</span>{' '}
+              {party.startTime}
+            </p>
+            <p>
+              <span className="partyMinorDetails">End Time:</span>{' '}
+              {party.endTime}
+            </p>
+          </div>
+          <div className="partyDetails">
+            <p className="partyDetailsTopLeft">Details </p>
+            <p className="partyDetailsTopRight">Food & Drink </p>
+          </div>
+          <div className="partyDetails">
+            <p className="description">{party.description}</p>
+            <p className="menu">{party.menu}</p>
+          </div>
+          <div className="map d-flex-column justify-content-center">
+            <div className="mapAndAttending ">
+              <ReactMapGL
+                ref={mapRef}
+                {...viewport}
+                onViewportChange={setViewport}
+                mapStyle="mapbox://styles/tmoney2020/ckcz7wpq80b751ir0dgv561fk"
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                className="mapBoarder"
+              >
+                <Geocoder
+                  className="geoSearch"
+                  mapRef={mapRef}
+                  onViewportChange={setViewport}
+                  mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                />
+                <GeolocateControl
+                  className="geo"
+                  style={geolocateStyle}
+                  positionOptions={{ enableHighAccuracy: true }}
+                  trackUserLocation={true}
+                />
+                <NavigationControl
+                  onChangeViewport={setViewport}
+                  className="nav"
+                />
+
+                {selectedMapParty && (
+                  <Popup
+                    latitude={selectedMapParty.latitude}
+                    longitude={selectedMapParty.longitude}
+                    closeButton={true}
+                    closeOnClick={false}
+                    onClose={() => setSelectedMapParty(null)}
+                    offsetTop={-5}
+                  >
+                    <div className="card my-3">
+                      <div className="card-header bg-info">
+                        <Link
+                          className="text-white"
+                          to={`/Parties/${selectedMapParty.id}`}
+                        >
+                          {selectedMapParty.name}
+                        </Link>
+                      </div>
+                      <div className="card-body">
+                        {selectedMapParty.address}
+                      </div>
+                      <div className="card-body">
+                        <span className="popOut">Times:</span>{' '}
+                        {selectedMapParty.startTime}-{selectedMapParty.endTime}{' '}
+                        <span className="popOut">Date:</span>{' '}
+                        {selectedMapParty.date}
+                      </div>
+                    </div>
+                  </Popup>
+                )}
+
+                <Marker latitude={party.latitude} longitude={party.longitude}>
+                  <span
+                    role="img"
+                    aria-label="flag"
+                    onClick={() => setSelectedMapParty(party)}
+                  >
+                    🚩
+                  </span>
+                </Marker>
+              </ReactMapGL>
+              <p className="text-center">
+                {party.address ? (
+                  <p className="text-center addressFont">
+                    <span className="popOut">Address:</span> {party.address}
+                  </p>
+                ) : (
+                  <p className="text-center">
+                    <span className="popOut">Address Unknown</span>
+                  </p>
+                )}
+              </p>
+            </div>
+          </div>
+        </div>
+        <form onSubmit={handleNewCommentSubmit}>
+          <section className="comments">
+            <div className="commentContainer">
+              <h1>Post a Comment</h1>
+              <p className="text-center">Leave a here comment here.</p>
+              <textarea
+                placeholder="Add Comment"
+                id="body"
+                value={newComment.body}
+                onChange={handleNewCommentFieldChange}
+              />
+              <button className="btn btn-primary mt-2" type="submit">
+                Post Comment
+              </button>
+            </div>
+            {party.comments.length > 0 && (
+              <div className="row">
+                {party.comments.map(comment => (
+                  <div key={comment.id} className="col-md-4 text-center">
+                    <div className="profile">
+                      {comment.user.profilePhotoURL ? (
+                        <img
+                          alt="user"
+                          className="user"
+                          src={comment.user.profilePhotoURL}
+                        />
+                      ) : (
+                        <img
+                          src="https://www.improvutopia.com/wp-content/uploads/2016/02/empty.png.jpeg"
+                          alt="user"
+                          className="user"
+                        />
+                      )}
+                      <blockquote>{comment.body}</blockquote>
+                      <h3>{comment.user.username}</h3>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            )}
+          </section>
+        </form>
+      </div>
+      <footer className="partyFooter">
+        <div className="footer">
+          {currentUserId === party.userId && (
+            <div className="d-flex justify-content-between">
+              <button
+                className="btn btn-danger btn-sm mt-1 mr-1"
+                onClick={handleDelete}
+              >
+                Delete Party
+              </button>
+              <Link to={`/Parties/${id}/edit`} className="btn btn-primary mt-1">
+                Edit Party
+              </Link>
             </div>
           )}
-        </section>
-      </form>
-    </div>
+        </div>
+      </footer>
+    </>
   )
 }

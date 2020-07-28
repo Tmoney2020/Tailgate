@@ -17,8 +17,8 @@ export function MyParties() {
   const [viewport, setViewport] = useState({
     width: 400,
     height: 400,
-    latitude: 27.77101804911986,
-    longitude: -82.66090611749074,
+    latitude: 27.341274,
+    longitude: -82.528267,
     zoom: 8,
   })
   const geolocateStyle = {

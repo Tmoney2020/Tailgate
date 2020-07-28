@@ -198,6 +198,9 @@ export function Search() {
           ))}
         </div>
       </div>
+      <footer className="partyFooter">
+        <div className="searchFooter"></div>
+      </footer>
     </>
   )
 }
