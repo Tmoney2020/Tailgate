@@ -21,8 +21,8 @@ export function Search() {
   const [viewport, setViewport] = useState({
     width: 400,
     height: 400,
-    latitude: 27.77101804911986,
-    longitude: -82.66090611749074,
+    latitude: 27.341274,
+    longitude: -82.528267,
     zoom: 8,
   })
 
@@ -50,6 +50,8 @@ export function Search() {
 
   const mapRef = React.useRef()
   const currentUserId = getUserId()
+
+  console.log(filterLocation.length)
 
   return (
     <>
@@ -143,13 +145,20 @@ export function Search() {
                 offsetTop={-5}
               >
                 <div className="card my-3">
-                  <div className="card-header">
-                    <Link to={`/Parties/${selectedMapParty.id}`}>
+                  <div className="card-header bg-info">
+                    <Link
+                      className="text-white"
+                      to={`/Parties/${selectedMapParty.id}`}
+                    >
                       {selectedMapParty.name}
                     </Link>
                   </div>
+                  <div className="card-body">{selectedMapParty.address}</div>
                   <div className="card-body">
-                    {selectedMapParty.description}
+                    <span className="popOut">Times:</span>{' '}
+                    {selectedMapParty.startTime}-{selectedMapParty.endTime}{' '}
+                    <span className="popOut">Date:</span>{' '}
+                    {selectedMapParty.date}
                   </div>
                 </div>
               </Popup>

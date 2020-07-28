@@ -22,14 +22,6 @@ export function Party() {
   const currentUserId = getUserId()
   const mapRef = React.useRef()
 
-  const [viewport, setViewport] = useState({
-    width: 400,
-    height: 400,
-    latitude: 27.77101804911986,
-    longitude: -82.66090611749074,
-    zoom: 8,
-  })
-
   const geolocateStyle = {
     float: 'left',
     padding: '10px',
@@ -66,6 +58,14 @@ export function Party() {
   useEffect(() => {
     fetchParty()
   }, [])
+
+  const [viewport, setViewport] = useState({
+    width: 400,
+    height: 400,
+    latitude: 27.341274,
+    longitude: -82.528267,
+    zoom: 8,
+  })
 
   const handleNewCommentFieldChange = event => {
     const whichFieldChanged = event.target.id
@@ -168,13 +168,20 @@ export function Party() {
                   offsetTop={-5}
                 >
                   <div className="card my-3">
-                    <div className="card-header">
-                      <Link to={`/Parties/${selectedMapParty.id}`}>
+                    <div className="card-header bg-info">
+                      <Link
+                        className="text-white"
+                        to={`/Parties/${selectedMapParty.id}`}
+                      >
                         {selectedMapParty.name}
                       </Link>
                     </div>
+                    <div className="card-body">{selectedMapParty.address}</div>
                     <div className="card-body">
-                      {selectedMapParty.description}
+                      <span className="popOut">Times:</span>{' '}
+                      {selectedMapParty.startTime}-{selectedMapParty.endTime}{' '}
+                      <span className="popOut">Date:</span>{' '}
+                      {selectedMapParty.date}
                     </div>
                   </div>
                 </Popup>
@@ -190,6 +197,17 @@ export function Party() {
                 </span>
               </Marker>
             </ReactMapGL>
+            <p className="text-center">
+              {party.address ? (
+                <p className="text-center">
+                  <span className="popOut">Address:</span> {party.address}
+                </p>
+              ) : (
+                <p className="text-center">
+                  <span className="popOut">Address Unknown</span>
+                </p>
+              )}
+            </p>
           </div>
         </div>
       </div>
