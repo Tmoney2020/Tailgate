@@ -30,7 +30,7 @@ export function SinglePartyForList(props) {
           />
         ) : (
           <img
-            src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
+            src="https://thetailgatelife.com/wp-content/uploads/2019/03/Screen-Shot-2019-03-23-at-03.29.03-1042x675.png"
             alt="partyPhoto"
             className="pictureThumbnail"
           />

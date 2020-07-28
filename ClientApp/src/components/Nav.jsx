@@ -47,36 +47,36 @@ export function Nav(props) {
             >
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <li className="navRight Search nav-link scroll-link">
+                  <div className="navRight Search nav-link scroll-link">
                     <Link to="/Search">Search</Link>
-                  </li>
+                  </div>
                 </li>
                 <li className="nav-item">
-                  <li className="navLeft nav-link scroll-link">
+                  <div className="navLeft nav-link scroll-link">
                     {(isLoggedIn() && (
                       <Link onClick={handleLogout}>Logout</Link>
                     )) || <Link to="/Login">Login</Link>}
-                  </li>
+                  </div>
                 </li>
                 <li className="nav-item">
-                  <li className="navLeft nav-link scroll-link">
+                  <div className="navLeft nav-link scroll-link">
                     {isLoggedIn() && (
                       <Link to={`/profile/${currentUserId}`}>Profile</Link>
                     )}
                     {isLoggedIn() || (
                       <Link to="/Profile">Create an Account</Link>
                     )}
-                  </li>
+                  </div>
                 </li>
                 <li className="nav-item">
-                  <li className="navRight Create nav-link scroll-link">
+                  <div className="navRight Create nav-link scroll-link">
                     {isLoggedIn() && <Link to="/Submit">Create Tailgate</Link>}
-                  </li>
+                  </div>
                 </li>
                 <li className="nav-item">
-                  <li className="navRight Create nav-link scroll-link">
+                  <div className="navRight Create nav-link scroll-link">
                     {isLoggedIn() && <Link to="/MyParties">My Parties</Link>}
-                  </li>
+                  </div>
                 </li>
               </ul>
             </div>

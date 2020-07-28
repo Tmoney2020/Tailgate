@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router'
 import { authHeader, getUserId } from '../auth'
-import ReactMapGL, { Popup, Marker } from 'react-map-gl'
+import ReactMapGL, {
+  Popup,
+  Marker,
+  GeolocateControl,
+  NavigationControl,
+} from 'react-map-gl'
 import { Link } from 'react-router-dom'
+import Geocoder from 'react-map-gl-geocoder'
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 export function Party() {
   const params = useParams()
@@ -12,14 +20,20 @@ export function Party() {
   const [selectedMapParty, setSelectedMapParty] = useState(null)
 
   const currentUserId = getUserId()
+  const mapRef = React.useRef()
 
   const [viewport, setViewport] = useState({
-    width: 500,
-    height: 500,
+    width: 400,
+    height: 400,
     latitude: 27.77101804911986,
     longitude: -82.66090611749074,
     zoom: 8,
   })
+
+  const geolocateStyle = {
+    float: 'left',
+    padding: '10px',
+  }
 
   const [newComment, setNewComment] = useState({
     body: '',
@@ -100,7 +114,7 @@ export function Party() {
             />
           ) : (
             <img
-              src="https://www.pets4you.com/wp-content/uploads/2018/06/golden-retriever-200x200.jpg"
+              src="https://thetailgatelife.com/wp-content/uploads/2019/03/Screen-Shot-2019-03-23-at-03.29.03-1042x675.png"
               alt="partyPicture"
               className="partyPicture"
             />
@@ -120,23 +134,47 @@ export function Party() {
         <div className="map d-flex-column justify-content-center">
           <div className="mapAndAttending ">
             <ReactMapGL
-              onViewportChange={setViewport}
+              ref={mapRef}
               {...viewport}
+              onViewportChange={setViewport}
+              mapStyle="mapbox://styles/tmoney2020/ckcz7wpq80b751ir0dgv561fk"
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+              className="mapBoarder"
             >
+              <Geocoder
+                className="geoSearch"
+                mapRef={mapRef}
+                onViewportChange={setViewport}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+              />
+              <GeolocateControl
+                className="geo"
+                style={geolocateStyle}
+                positionOptions={{ enableHighAccuracy: true }}
+                trackUserLocation={true}
+              />
+              <NavigationControl
+                onChangeViewport={setViewport}
+                className="nav"
+              />
+
               {selectedMapParty && (
                 <Popup
-                  latitude={party.latitude}
-                  longitude={party.longitude}
+                  latitude={selectedMapParty.latitude}
+                  longitude={selectedMapParty.longitude}
                   closeButton={true}
                   closeOnClick={false}
                   onClose={() => setSelectedMapParty(null)}
                   offsetTop={-5}
                 >
                   <div className="card my-3">
-                    <div className="card-header">{party.address}</div>
+                    <div className="card-header">
+                      <Link to={`/Parties/${selectedMapParty.id}`}>
+                        {selectedMapParty.name}
+                      </Link>
+                    </div>
                     <div className="card-body">
-                      I want this to be directions
+                      {selectedMapParty.description}
                     </div>
                   </div>
                 </Popup>
@@ -152,20 +190,6 @@ export function Party() {
                 </span>
               </Marker>
             </ReactMapGL>
-          </div>
-          <div className="attending">
-            <p># of Attending</p>
-            <div className="affirmation">
-              <button className="attendingButton" to="#">
-                Yes
-              </button>
-              <button className="attendingButton" to="#">
-                No
-              </button>
-              <button className="attendingButton" to="#">
-                Maybe
-              </button>
-            </div>
           </div>
         </div>
       </div>
