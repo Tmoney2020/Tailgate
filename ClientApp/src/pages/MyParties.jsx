@@ -54,7 +54,9 @@ export function MyParties() {
       <div className="leftSideSearch">
         <div className="searchCriteria">
           <div className="form-group search ml-2 mr-5">
-            <label for="dateOfEvent">Date Of Event</label>
+            <label className="searchFilter" for="dateOfEvent">
+              Date Of Event
+            </label>
             <input
               className="smallSearch"
               type="date"
@@ -65,7 +67,7 @@ export function MyParties() {
             />
           </div>
           <div className="form-group search ml-2 mr-5">
-            <label for="exampleFormControlSelect1">
+            <label className="searchFilter" for="exampleFormControlSelect1">
               Type of Sporting Event
             </label>
             <select
@@ -87,7 +89,9 @@ export function MyParties() {
             </select>
           </div>
           <div className="form-group search ml-2 pb-2">
-            <label for="exampleFormControlInput1">Location</label>
+            <label className="searchFilter" for="exampleFormControlInput1">
+              Location
+            </label>
             <input
               type="text"
               className="form-control smallSearch"
@@ -176,6 +180,11 @@ export function MyParties() {
           )}
         </div>
       </div>
+      <footer className="partyFooter">
+        <div className="searchFooter">
+          <p className="textFooter">Tailgate, Home of the Tailgate Party</p>
+        </div>
+      </footer>
     </>
   )
 }

@@ -111,7 +111,7 @@ export function Submit() {
             </div>
           )}
         </div>
-        <div className="card ml-2 mr-2 bg-light">
+        <div className="card ml-2 mr-2 mb-4 bg-light">
           <div className="card-header bg-primary text-white">
             Create Your Tailgate
           </div>
@@ -237,11 +237,16 @@ export function Submit() {
                   : 'Drag a new picture file here to upload!'}
               </div>
             </div>
-            <button class="btn btn-primary ml-3" type="submit">
+            <button class="btn btn-primary ml-3 mb-2" type="submit">
               Submit
             </button>
           </form>
         </div>
+        <footer className="partyFooter">
+          <div className="searchFooter">
+            <p className="textFooter">Tailgate, Home of the Tailgate Party</p>
+          </div>
+        </footer>
       </div>
     </>
   )

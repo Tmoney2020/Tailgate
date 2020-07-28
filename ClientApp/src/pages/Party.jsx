@@ -232,6 +232,7 @@ export function Party() {
               <h1>Post a Comment</h1>
               <p className="text-center">Leave a here comment here.</p>
               <textarea
+                maxLength="75"
                 placeholder="Add Comment"
                 id="body"
                 value={newComment.body}

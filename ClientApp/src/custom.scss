@@ -95,6 +95,7 @@ code {
   border: 0;
   position: relative;
   right: 1px;
+  font-family: 'Tangerine';
 }
 
 // start of the Login screen styling
@@ -236,6 +237,11 @@ select {
   -webkit-text-fill-color: transparent;
 }
 
+.searchCriteria {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .nav {
   position: absolute;
   top: 70px;
@@ -275,6 +281,12 @@ select {
   border-radius: 0.3rem;
 }
 
+.searchFilter {
+  font-family: 'Tangerine';
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+
 .leftSideSearch {
   width: 100%;
   height: auto;
@@ -296,6 +308,7 @@ select {
 .thumbnailParty {
   display: flex;
   background-color: rgb(241, 239, 239);
+  justify-content: space-between;
 }
 
 .listPartyRight {
@@ -331,6 +344,14 @@ select {
   opacity: 0.9;
   padding-left: 0;
   padding-right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.textFooter {
+  color: white;
+  align-self: center;
+  font-family: 'Tangerine';
 }
 
 // start of the Party page
@@ -594,49 +615,9 @@ blockquote::after {
   background-color: rgb(236, 235, 235);
 }
 
-@media all and (min-width: 768px) {
-  // this styles the search bar and results
-  .thumbnailParty {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .wholeSearchContainer {
-    display: flex;
-    flex-direction: row;
-    margin-top: 1rem;
-    border-right: 2px solid rgb(221, 219, 219);
-    border-radius: 0.3rem;
-  }
-
-  .leftSideSearch {
-    width: 100%;
-    height: auto;
-    list-style: none;
-    background-color: rgb(198, 223, 243);
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .searchCriteria {
-    display: flex;
-    flex-direction: row;
-  }
-
-  // This is the picture on right side
-  .pictureThumbnail {
-    border: 1px solid #ddd;
-    padding: 5px;
-    min-width: 150px;
-    max-width: 200px;
-  }
-
-  .listPartyCenter,
-  .listPartyRight,
-  .listPartyLeft {
-    margin-top: 1rem;
-    margin-right: 1rem;
+@media all and (min-width: 600px) {
+  .listPartyCenter {
+    max-width: 500px;
   }
 
   .comments {
@@ -666,6 +647,54 @@ blockquote::after {
     .col-md-4 {
       flex: 0 0 auto;
       margin: 40px auto;
+      max-width: 300px;
     }
+  }
+}
+
+@media all and (min-width: 768px) {
+  // this styles the search bar and results
+  .thumbnailParty {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .wholeSearchContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    border-right: 2px solid rgb(221, 219, 219);
+    border-radius: 0.3rem;
+  }
+
+  .leftSideSearch {
+    width: 100%;
+    height: auto;
+    list-style: none;
+    background-color: rgb(198, 223, 243);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .searchCriteria {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  // This is the picture on right side
+  .pictureThumbnail {
+    border: 1px solid #ddd;
+    padding: 5px;
+    min-width: 150px;
+    max-width: 200px;
+  }
+
+  .listPartyCenter,
+  .listPartyRight,
+  .listPartyLeft {
+    margin-top: 1rem;
+    margin-right: 1rem;
   }
 }
