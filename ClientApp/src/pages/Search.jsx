@@ -10,8 +10,6 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { getUserId } from '../auth'
 import Geocoder from 'react-map-gl-geocoder'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-// import Directions from 'react-map-gl-directions'
-// import 'react-map-gl-directions/dist/mapbox-gl-directions.css'
 
 export function Search() {
   const [parties, setParties] = useState([])
@@ -174,10 +172,6 @@ export function Search() {
                   </span>
                 </Marker>
               ))}
-            {/* <Directions
-            mapRef={mapRef}
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          /> */}
           </ReactMapGL>
         </div>
         <div class="list-group rightSideSearch">

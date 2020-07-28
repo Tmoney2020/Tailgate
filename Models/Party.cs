@@ -27,14 +27,14 @@ namespace Tailgate.Models
         {
             get
             {
-                return this.Location != null && this.Location.Coordinate != null ? this.Location.Coordinate.Y : 0;
+                return this.Location != null && this.Location.Coordinate != null ? this.Location.Coordinate.X : 0;
             }
         }
         public double Longitude
         {
             get
             {
-                return this.Location != null && this.Location.Coordinate != null ? this.Location.Coordinate.X : 0;
+                return this.Location != null && this.Location.Coordinate != null ? this.Location.Coordinate.Y : 0;
             }
         }
         public string PhotoURL { get; set; }
