@@ -22,11 +22,14 @@ export function MyParties() {
     longitude: -82.528267,
     zoom: 8,
   })
+
   const geolocateStyle = {
     float: 'left',
     padding: '10px',
   }
+
   const [selectedMapParty, setSelectedMapParty] = useState(null)
+
   useEffect(() => {
     const url =
       filterText.length === 0 &&

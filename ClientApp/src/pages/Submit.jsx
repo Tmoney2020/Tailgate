@@ -61,19 +61,13 @@ export function Submit() {
   }
 
   const onDropFile = async acceptedFiles => {
-    // Do something with the files
     const fileToUpload = acceptedFiles[0]
     console.log(fileToUpload)
 
-    // Create a formData object so we can send this
-    // to the API that is expecting som form data.
     const formData = new FormData()
 
-    // Append a field that is the form upload itself
     formData.append('file', fileToUpload)
 
-    // Use fetch to send an authorization header and
-    // a body containing the form data with the file
     const response = await fetch('/api/Uploads', {
       method: 'POST',
       headers: {
@@ -82,10 +76,6 @@ export function Submit() {
       body: formData,
     })
 
-    // If we receive a 200 OK response, set the
-    // URL of the photo in our state so that it is
-    // sent along when creating the restaurant,
-    // otherwise show an error
     if (response.status === 200) {
       const apiResponse = await response.json()
 
