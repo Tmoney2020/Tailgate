@@ -70,12 +70,12 @@ export function Nav(props) {
                 </li>
                 <li className="nav-item">
                   <div className="navRight Create nav-link scroll-link">
-                    {isLoggedIn() && <Link to="/Submit">Create Tailgate</Link>}
+                    {isLoggedIn() && <Link to="/MyParties">My Parties</Link>}
                   </div>
                 </li>
                 <li className="nav-item">
                   <div className="navRight Create nav-link scroll-link">
-                    {isLoggedIn() && <Link to="/MyParties">My Parties</Link>}
+                    {isLoggedIn() && <Link to="/Submit">Create Tailgate</Link>}
                   </div>
                 </li>
               </ul>

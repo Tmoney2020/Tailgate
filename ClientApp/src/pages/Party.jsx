@@ -218,7 +218,7 @@ export function Party() {
               <p className="text-center">
                 {party.address ? (
                   <p className="text-center addressFont">
-                    <span className="popOut">Address:</span> {party.address}
+                    <span className="popOut">Location:</span> {party.address}
                   </p>
                 ) : (
                   <p className="text-center">
@@ -226,12 +226,28 @@ export function Party() {
                   </p>
                 )}
               </p>
+              {currentUserId === party.userId && (
+                <div className="d-flex justify-content-center mb-4">
+                  <button
+                    className="btn btn-danger btn-sm partyButtons"
+                    onClick={handleDelete}
+                  >
+                    Delete Party
+                  </button>
+                  <Link
+                    to={`/Parties/${id}/edit`}
+                    className="btn btn-primary btn-sm partyButtons"
+                  >
+                    Edit Party
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
         <form onSubmit={handleNewCommentSubmit}>
           <section className="comments">
-            <div className="commentContainer">
+            <div className="commentContainer mt-4">
               <h1>Post a Comment</h1>
               <p className="text-center">Leave a here comment here.</p>
               <textarea
@@ -274,24 +290,7 @@ export function Party() {
         </form>
       </div>
       <footer className="partyFooter">
-        <div className="footer">
-          {currentUserId === party.userId && (
-            <div className="d-flex justify-content-between">
-              <button
-                className="btn btn-danger partyButtons"
-                onClick={handleDelete}
-              >
-                Delete Party
-              </button>
-              <Link
-                to={`/Parties/${id}/edit`}
-                className="btn btn-primary partyButtons"
-              >
-                Edit Party
-              </Link>
-            </div>
-          )}
-        </div>
+        <div className="footer"></div>
       </footer>
     </>
   )

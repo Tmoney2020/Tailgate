@@ -139,17 +139,6 @@ export function EditingProfile() {
               />
             </div>
             <div className="form-group ml-5 mr-5 mt-2">
-              <label htmlFor="password">Password</label>
-              <input
-                placeholder="Must Re-enter Password to Edit"
-                type="password"
-                className="form-control"
-                id="password"
-                value={editingUser.password}
-                onChange={handleInputFieldsForSubmit}
-              />
-            </div>
-            <div className="form-group ml-5 mr-5 mt-2">
               <label htmlFor="email">Favorite Sports Team</label>
               <input
                 type="team"
@@ -166,6 +155,17 @@ export function EditingProfile() {
                   ? 'Drop the files here ...'
                   : 'Drag a new picture file here to upload!'}
               </div>
+            </div>
+            <div className="form-group ml-5 mr-5 mt-2">
+              <label htmlFor="password">Password</label>
+              <input
+                placeholder="Must Re-enter Password to Edit Profile"
+                type="password"
+                className="form-control"
+                id="password"
+                value={editingUser.password}
+                onChange={handleInputFieldsForSubmit}
+              />
             </div>
             <button type="submit" className="btn btn-primary ml-5 mb-1">
               Edit Profile

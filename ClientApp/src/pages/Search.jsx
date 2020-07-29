@@ -62,7 +62,7 @@ export function Search() {
             alt="tailgate"
             className="searchPicture"
           />
-          <div class="centered">Find Your Tailgate Party</div>
+          <div class="centered">Find A Tailgate Party</div>
         </div>
         <div className="leftSideSearch">
           <div className="searchCriteria">
@@ -90,14 +90,14 @@ export function Search() {
                 onChange={event => setFilterTypeOfEvent(event.target.value)}
               >
                 <option placeholder="Select:"></option>
-                <option>NFL</option>
-                <option>NBA</option>
-                <option>NCAA Football</option>
-                <option>NCAA Basketball</option>
                 <option>Golf</option>
-                <option>Baseball</option>
-                <option>Soccer</option>
                 <option>Hockey</option>
+                <option>MLB</option>
+                <option>NBA</option>
+                <option>NCAA Basketball</option>
+                <option>NCAA Football</option>
+                <option>NFL</option>
+                <option>Soccer</option>
                 <option>Other</option>
               </select>
             </div>
@@ -152,7 +152,7 @@ export function Search() {
                   onClose={() => setSelectedMapParty(null)}
                   offsetTop={-5}
                 >
-                  <div className="card my-3">
+                  <div className="card my-3 mapPop">
                     <div className="card-header bg-info">
                       <Link
                         className="text-white"

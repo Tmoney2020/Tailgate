@@ -204,14 +204,14 @@ export function EditParty() {
               >
                 <option>Select:</option>
 
-                <option>NFL</option>
-                <option>NBA</option>
-                <option>NCAA Football</option>
-                <option>NCAA Basketball</option>
                 <option>Golf</option>
-                <option>Baseball</option>
-                <option>Soccer</option>
                 <option>Hockey</option>
+                <option>MLB</option>
+                <option>NBA</option>
+                <option>NCAA Basketball</option>
+                <option>NCAA Football</option>
+                <option>NFL</option>
+                <option>Soccer</option>
                 <option>Other</option>
               </select>
             </div>

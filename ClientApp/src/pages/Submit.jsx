@@ -118,7 +118,7 @@ export function Submit() {
           <form onSubmit={handleToSubmit}>
             <div className="submitTop">
               <div className="form-group mr-3 ml-3">
-                <label for="dateOfEvent">Date Of Event</label>
+                <label for="dateOfEvent">Date of Event</label>
                 <input
                   type="date"
                   name="dateOfEvent"
@@ -128,12 +128,12 @@ export function Submit() {
                 />
               </div>
               <div className="form-group mr-3 ml-3">
-                <label for="startTime">Start time</label>
+                <label for="startTime">Start Time</label>
                 <input
                   type="text"
                   name="startTime"
                   id="startTime"
-                  placeholder="example: 3:00 PM"
+                  placeholder="Example: 3:00 PM"
                   value={newParty.startTime}
                   onChange={handleInputFieldsForSubmit}
                 />
@@ -144,14 +144,14 @@ export function Submit() {
                   type="text"
                   name="endTime"
                   id="endTime"
-                  placeholder="example: 5:00 PM"
+                  placeholder="Example: 5:00 PM"
                   value={newParty.endTime}
                   onChange={handleInputFieldsForSubmit}
                 />
               </div>
             </div>
             <div className="form-group mr-3 ml-3">
-              <label for="exampleFormControlInput1">Tailgate party name</label>
+              <label for="exampleFormControlInput1">Tailgate Party Name</label>
               <input
                 maxLength="20"
                 type="text"
@@ -163,7 +163,7 @@ export function Submit() {
               />
             </div>
             <div className="form-group mr-3 ml-3">
-              <label for="exampleFormControlTextarea1">Description</label>
+              <label for="exampleFormControlTextarea1">Details</label>
               <textarea
                 className="form-control"
                 id="description"
@@ -173,7 +173,7 @@ export function Submit() {
               ></textarea>
             </div>
             <div className="form-group mr-3 ml-3">
-              <label for="exampleFormControlTextarea1">Food/Drink Menu</label>
+              <label for="exampleFormControlTextarea1">Food & Drink</label>
               <textarea
                 className="form-control"
                 id="menu"
@@ -194,14 +194,14 @@ export function Submit() {
               >
                 <option>Select:</option>
 
-                <option>NFL</option>
-                <option>NBA</option>
-                <option>NCAA Football</option>
-                <option>NCAA Basketball</option>
                 <option>Golf</option>
-                <option>Baseball</option>
-                <option>Soccer</option>
                 <option>Hockey</option>
+                <option>MLB</option>
+                <option>NBA</option>
+                <option>NCAA Basketball</option>
+                <option>NCAA Football</option>
+                <option>NFL</option>
+                <option>Soccer</option>
                 <option>Other</option>
               </select>
             </div>
@@ -219,7 +219,7 @@ export function Submit() {
               />
             </div>
             <div className="form-group mr-3 ml-3">
-              <label for="exampleFormControlInput1">Address</label>
+              <label for="exampleFormControlInput1">Location</label>
               <input
                 type="text"
                 className="form-control"

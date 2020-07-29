@@ -136,7 +136,7 @@ export function Profile() {
               />
             </div>
             <button type="submit" className="btn btn-primary ml-5 mb-1">
-              Submit
+              Create Account
             </button>
           </form>
         </div>

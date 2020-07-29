@@ -281,6 +281,7 @@ select {
 
 .mapboxgl-popup {
   z-index: 1;
+  max-width: 275px;
 }
 
 .mapBoarder {
@@ -350,6 +351,7 @@ select {
   text-decoration: underline;
   font-family: 'Tangerine';
   font-weight: bold;
+  font-size: 1rem;
 }
 
 .listPartyCenter {
@@ -512,7 +514,7 @@ select {
 }
 
 .partyMinorDetails {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: rgb(17, 120, 255);
   font-family: 'Tangerine';
 }
@@ -572,7 +574,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 
 .commentContainer textarea {
