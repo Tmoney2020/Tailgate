@@ -178,7 +178,7 @@ export function MyParties() {
             <li className="list-group-item searchBar">
               <input
                 type="text"
-                placeholder="Search By Tailgate Name"
+                placeholder="Search By Tailgate Name or Event"
                 className="form-control"
                 value={filterText}
                 onChange={event => setFilterText(event.target.value)}

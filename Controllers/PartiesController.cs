@@ -39,7 +39,7 @@ namespace Tailgate.Controllers
             if (filter != null)
             {
                 parties = parties.Where(party => party.Name.ToUpper().
-                                Contains(filter.ToUpper())).
+                                Contains(filter.ToUpper()) || (party.Event.ToUpper().Contains(filter.ToUpper()))).
                                 Include(party => party.Comments).
                                 ThenInclude(comment => comment.User);
 

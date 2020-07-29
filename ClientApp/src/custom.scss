@@ -247,13 +247,9 @@ select {
   left: 50%;
   transform: translate(-50%, -75%);
   font-size: 3rem;
-  background: -webkit-linear-gradient(rgb(255, 46, 46), rgb(8, 91, 216));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.centered {
-  background: -moz-linear-gradient(rgb(255, 46, 46), rgb(8, 91, 216));
+  font-family: 'Tangerine';
+  color: rgb(9, 13, 245);
+  text-shadow: 2px 2px 3px #5ac2d4, 0 0 5px #f77272;
 }
 
 .searchCriteria {
