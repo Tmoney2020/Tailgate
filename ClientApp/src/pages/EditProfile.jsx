@@ -141,7 +141,7 @@ export function EditingProfile() {
             <div className="form-group ml-5 mr-5 mt-2">
               <label htmlFor="password">Password</label>
               <input
-                placeholder="Must Re-enter Password"
+                placeholder="Must Re-enter Password to Edit"
                 type="password"
                 className="form-control"
                 id="password"
@@ -168,7 +168,7 @@ export function EditingProfile() {
               </div>
             </div>
             <button type="submit" className="btn btn-primary ml-5 mb-1">
-              Submit
+              Edit Profile
             </button>
           </form>
         </div>

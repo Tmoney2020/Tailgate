@@ -248,7 +248,7 @@ export function EditParty() {
               </div>
             </div>
             <button class="btn btn-primary ml-3" type="submit">
-              Submit
+              Edit Party
             </button>
           </form>
         </div>

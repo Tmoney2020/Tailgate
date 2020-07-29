@@ -85,7 +85,7 @@ export function Login() {
             </li>
             <li>
               <Link to="/Search">
-                <button className="buttonLogIn">Proceed as guest</button>
+                <button className="buttonLogIn">Proceed as Guest</button>
               </Link>
             </li>
           </ul>
@@ -93,14 +93,7 @@ export function Login() {
             <li>
               <Link to="/Profile">
                 <button className="createAccount" to="/Profile">
-                  Create an account
-                </button>
-              </Link>
-            </li>
-            <li>
-              <Link to="#">
-                <button className="resetAccount" to="#">
-                  Reset Account
+                  Create an Account
                 </button>
               </Link>
             </li>

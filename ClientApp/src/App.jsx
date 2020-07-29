@@ -21,7 +21,7 @@ export function SinglePartyForList(props) {
       className="list-group-item list-group-item-action thumbnailParty mb-2 mr-2"
     >
       <div className="listPartyLeft">
-        <p>{props.party.name}</p>
+        <p className="listPartyLeftName">{props.party.name}</p>
         {props.party.photoURL ? (
           <img
             alt="partyPhoto"
@@ -37,12 +37,19 @@ export function SinglePartyForList(props) {
         )}
       </div>
       <div className="listPartyCenter">
-        <p className="textCenter">{props.party.description}</p>
+        <p className="font">
+          <span className="partyMinorDetails">Location: </span>
+          {props.party.address}
+        </p>
+        <p className="font">
+          <span className="partyMinorDetails">Event: </span>
+          {props.party.event}
+        </p>
       </div>
       <div className="listPartyRight">
-        <p>{props.party.type}</p>
-        <p>{props.party.date}</p>
-        <p>
+        <p className="font">{props.party.type}</p>
+        <p className="font">{props.party.date}</p>
+        <p className="font">
           {props.party.startTime}-{props.party.endTime}
         </p>
       </div>

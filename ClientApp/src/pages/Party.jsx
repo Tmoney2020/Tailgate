@@ -278,12 +278,15 @@ export function Party() {
           {currentUserId === party.userId && (
             <div className="d-flex justify-content-between">
               <button
-                className="btn btn-danger btn-sm mt-1 mr-1"
+                className="btn btn-danger partyButtons"
                 onClick={handleDelete}
               >
                 Delete Party
               </button>
-              <Link to={`/Parties/${id}/edit`} className="btn btn-primary mt-1">
+              <Link
+                to={`/Parties/${id}/edit`}
+                className="btn btn-primary partyButtons"
+              >
                 Edit Party
               </Link>
             </div>

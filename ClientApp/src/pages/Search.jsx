@@ -109,7 +109,7 @@ export function Search() {
                 type="text"
                 className="form-control smallSearch"
                 id="location"
-                placeholder="123 Fake Street"
+                placeholder="Example: 1600 Pennsylvania Avenue NW, Washington, DC 20500"
                 value={filterLocation}
                 onChange={event => setFilterLocation(event.target.value)}
               />
@@ -242,7 +242,7 @@ function SinglePartyForList(props) {
       </div>
       <div className="listPartyCenter">
         <p className="font">
-          <span className="partyMinorDetails">Address: </span>
+          <span className="partyMinorDetails">Location: </span>
           {props.party.address}
         </p>
         <p className="font">

@@ -160,8 +160,8 @@ div.Login-Container {
   border-radius: 0.2rem;
   background-image: linear-gradient(
     to bottom right,
-    rgb(26, 78, 26),
-    rgb(34, 156, 238)
+    rgb(21, 56, 250),
+    rgb(84, 171, 230)
   );
   color: white;
   opacity: 0.9;
@@ -170,8 +170,12 @@ div.Login-Container {
 .createAccount {
   padding: 0.2rem;
   border-radius: 0.2rem;
-  background-image: url('https://media.freestocktextures.com/cache/d2/ae/d2ae1b05ca1cee01372362830c0b0ff6.jpg');
   background-size: cover;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(12, 104, 42),
+    rgb(42, 139, 230)
+  );
   color: white;
 }
 
@@ -357,6 +361,7 @@ select {
   padding: 5px;
   width: 150px;
   height: 150px;
+  background-color: rgb(236, 235, 235);
 }
 
 .searchFooter {
@@ -526,6 +531,12 @@ select {
     ),
     url('https://i.pinimg.com/originals/a6/16/b9/a616b96b4ec46c0b61ad40d43f638c82.jpg');
 }
+
+.partyButtons {
+  margin-top: 2rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
 // this is the start of comments styling
 
 h1 {
@@ -679,7 +690,7 @@ blockquote::after {
   }
 }
 
-@media all and (min-width: 768px) {
+@media all and (min-width: 900px) {
   // this styles the search bar and results
   .thumbnailParty {
     display: flex;

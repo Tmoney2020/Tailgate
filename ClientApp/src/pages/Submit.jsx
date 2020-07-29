@@ -213,7 +213,7 @@ export function Submit() {
                 type="text"
                 className="form-control"
                 id="event"
-                placeholder="Bucs vs Saints"
+                placeholder="Example: Buccaneers Vs Saints"
                 value={newParty.event}
                 onChange={handleInputFieldsForSubmit}
               />
@@ -224,7 +224,7 @@ export function Submit() {
                 type="text"
                 className="form-control"
                 id="address"
-                placeholder="123 Fake Street"
+                placeholder="Example: 1600 Pennsylvania Avenue NW, Washington, DC 20500"
                 value={newParty.address}
                 onChange={handleInputFieldsForSubmit}
               />
@@ -238,7 +238,7 @@ export function Submit() {
               </div>
             </div>
             <button class="btn btn-primary ml-3 mb-2" type="submit">
-              Submit
+              Create Tailgate
             </button>
           </form>
         </div>
