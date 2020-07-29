@@ -59,7 +59,7 @@ export function MyParties() {
           <div className="searchCriteria">
             <div className="form-group search ml-2 mr-5">
               <label className="searchFilter" for="dateOfEvent">
-                Date Of Event
+                Date of Event
               </label>
               <input
                 className="smallSearch"
@@ -178,7 +178,7 @@ export function MyParties() {
             <li className="list-group-item searchBar">
               <input
                 type="text"
-                placeholder="Search By Tailgate Name or Event"
+                placeholder="Search by Tailgate Name or Event"
                 className="form-control"
                 value={filterText}
                 onChange={event => setFilterText(event.target.value)}

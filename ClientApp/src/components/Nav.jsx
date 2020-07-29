@@ -14,8 +14,6 @@ export function Nav(props) {
 
   const currentUserId = getUserId()
 
-  console.log(isLoggedIn())
-
   return (
     <header className="sticky-top">
       <nav>
@@ -70,7 +68,7 @@ export function Nav(props) {
                 </li>
                 <li className="nav-item">
                   <div className="navRight Create nav-link scroll-link">
-                    {isLoggedIn() && <Link to="/MyParties">My Parties</Link>}
+                    {isLoggedIn() && <Link to="/MyParties">My Tailgates</Link>}
                   </div>
                 </li>
                 <li className="nav-item">

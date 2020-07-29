@@ -71,19 +71,13 @@ export function EditParty() {
   }, [])
 
   const onDropFile = async acceptedFiles => {
-    // Do something with the files
     const fileToUpload = acceptedFiles[0]
     console.log(fileToUpload)
 
-    // Create a formData object so we can send this
-    // to the API that is expecting som form data.
     const formData = new FormData()
 
-    // Append a field that is the form upload itself
     formData.append('file', fileToUpload)
 
-    // Use fetch to send an authorization header and
-    // a body containing the form data with the file
     const response = await fetch('/api/Uploads', {
       method: 'POST',
       headers: {
@@ -92,10 +86,6 @@ export function EditParty() {
       body: formData,
     })
 
-    // If we receive a 200 OK response, set the
-    // URL of the photo in our state so that it is
-    // sent along when creating the restaurant,
-    // otherwise show an error
     if (response.status === 200) {
       const apiResponse = await response.json()
 
@@ -128,7 +118,7 @@ export function EditParty() {
           <form onSubmit={handleToSubmit}>
             <div className="submitTop">
               <div className="form-group mr-3 ml-3">
-                <label for="dateOfEvent">Date Of Event</label>
+                <label for="dateOfEvent">Date of Event</label>
                 <input
                   type="date"
                   name="dateOfEvent"
@@ -138,7 +128,7 @@ export function EditParty() {
                 />
               </div>
               <div className="form-group mr-3 ml-3">
-                <label for="startTime">Start time</label>
+                <label for="startTime">Start Time</label>
                 <input
                   type="text"
                   name="startTime"
@@ -161,7 +151,7 @@ export function EditParty() {
               </div>
             </div>
             <div className="form-group mr-3 ml-3">
-              <label for="exampleFormControlInput1">Tailgate party name</label>
+              <label for="exampleFormControlInput1">Tailgate Party Name</label>
               <input
                 maxLength="20"
                 type="text"
@@ -173,7 +163,7 @@ export function EditParty() {
               />
             </div>
             <div className="form-group mr-3 ml-3">
-              <label for="exampleFormControlTextarea1">Description</label>
+              <label for="exampleFormControlTextarea1">Details</label>
               <textarea
                 className="form-control"
                 id="description"
@@ -183,7 +173,7 @@ export function EditParty() {
               ></textarea>
             </div>
             <div className="form-group mr-3 ml-3">
-              <label for="exampleFormControlTextarea1">Food/Drink Menu</label>
+              <label for="exampleFormControlTextarea1">Food & Drink</label>
               <textarea
                 className="form-control"
                 id="menu"
@@ -229,7 +219,7 @@ export function EditParty() {
               />
             </div>
             <div className="form-group mr-3 ml-3">
-              <label for="exampleFormControlInput1">Address</label>
+              <label for="exampleFormControlInput1">Location</label>
               <input
                 type="text"
                 className="form-control"

@@ -197,7 +197,7 @@ export function Search() {
             <li className="list-group-item searchBar">
               <input
                 type="text"
-                placeholder="Search By Tailgate Name or Event"
+                placeholder="Search by Tailgate Name or Event"
                 className="form-control"
                 value={filterText}
                 onChange={event => setFilterText(event.target.value)}
