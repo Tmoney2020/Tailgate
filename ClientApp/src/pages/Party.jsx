@@ -135,6 +135,9 @@ export function Party() {
               <span className="partyMinorDetails">End Time:</span>{' '}
               {party.endTime}
             </p>
+            <p>
+              <span className="partyMinorDetails">Event:</span> {party.event}
+            </p>
           </div>
           <div className="partyDetails">
             <p className="partyDetailsTopLeft">Details </p>

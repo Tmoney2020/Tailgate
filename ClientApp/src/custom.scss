@@ -9,6 +9,10 @@ a {
   color: #0366d6;
 }
 
+.font {
+  font-family: 'Tangerine';
+}
+
 code {
   color: #e01a76;
 }
@@ -326,6 +330,12 @@ select {
   margin-right: 1rem;
 }
 
+.listPartyLeftName {
+  text-decoration: underline;
+  font-family: 'Tangerine';
+  font-weight: bold;
+}
+
 .pictureThumbnail {
   border: 1px solid #ddd;
   padding: 5px;
@@ -477,6 +487,7 @@ select {
   justify-content: space-evenly;
   width: 100%;
   max-width: 700px;
+  flex-wrap: wrap;
 }
 
 .partyMinorDetails {
