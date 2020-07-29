@@ -145,6 +145,14 @@ div.Login-Container {
   opacity: 0.9;
 }
 
+.tagLineLogin {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-family: 'Tangerine';
+  font-weight: bold;
+  text-shadow: 2px 2px 3px #123aee, 0 0 5px #1a6368;
+}
+
 .buttonLogIn {
   width: 90%;
   margin-top: 5px;
@@ -236,9 +244,12 @@ select {
   transform: translate(-50%, -75%);
   font-size: 3rem;
   background: -webkit-linear-gradient(rgb(255, 46, 46), rgb(8, 91, 216));
-  // background: -moz-linear-gradient(rgb(255, 46, 46), rgb(8, 91, 216));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.centered {
+  background: -moz-linear-gradient(rgb(255, 46, 46), rgb(8, 91, 216));
 }
 
 .searchCriteria {
@@ -309,15 +320,16 @@ select {
   overflow-y: auto;
 }
 
+.searchWrapper {
+  background-color: rgb(236, 235, 235);
+}
+
 .thumbnailParty {
   display: flex;
-  background-color: rgb(241, 239, 239);
-  justify-content: space-between;
 }
 
 .listPartyRight {
   font-size: 0.8rem;
-  align-items: flex-start;
 }
 
 .listPartyLeft {
@@ -334,6 +346,10 @@ select {
   text-decoration: underline;
   font-family: 'Tangerine';
   font-weight: bold;
+}
+
+.listPartyCenter {
+  width: 300px;
 }
 
 .pictureThumbnail {
@@ -628,7 +644,7 @@ blockquote::after {
 
 @media all and (min-width: 600px) {
   .listPartyCenter {
-    max-width: 500px;
+    width: 500px;
   }
 
   .comments {

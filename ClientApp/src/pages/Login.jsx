@@ -105,6 +105,7 @@ export function Login() {
               </Link>
             </li>
           </ul>
+          <p className="tagLineLogin">Home of the Tailgate Party</p>
         </div>
       </form>
     </div>
