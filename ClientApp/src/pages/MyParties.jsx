@@ -8,6 +8,9 @@ import ReactMapGL, {
   NavigationControl,
 } from 'react-map-gl'
 import { SinglePartyForList } from '../App'
+import Geocoder from 'react-map-gl-geocoder'
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 export function MyParties() {
   const [parties, setParties] = useState([])
@@ -120,6 +123,12 @@ export function MyParties() {
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               className="mapBoarder"
             >
+              <Geocoder
+                className="geoSearch"
+                mapRef={mapRef}
+                onViewportChange={setViewport}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+              />
               <GeolocateControl
                 className="geo"
                 style={geolocateStyle}
